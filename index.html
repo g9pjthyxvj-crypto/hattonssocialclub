@@ -2,1109 +2,1527 @@
 
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Trust Tattoo — Custom Tattoo Studio · Santa Cruz, CA</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Trust Tattoo — Santa Cruz, CA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
 <style>
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-a{color:inherit;text-decoration:none}
-html{scroll-behavior:smooth;overflow-x:hidden;background:#080808;color:#E8E4DC}
-body{font-family:'DM Sans',sans-serif;font-weight:300;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+  :root {
+    --black: #0a0a0a;
+    --deep: #111111;
+    --surface: #181818;
+    --border: #2a2a2a;
+    --red: #c0392b;
+    --red-hot: #e74c3c;
+    --red-dim: #7a1a10;
+    --cream: #e8ddd0;
+    --muted: #888;
+    --white: #f5f0eb;
+    --font-display: 'Bebas Neue', sans-serif;
+    --font-body: 'Cormorant Garamond', serif;
+    --font-mono: 'Space Mono', monospace;
+  }
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+background: var(–black);
+color: var(–cream);
+font-family: var(–font-body);
+font-size: 18px;
+overflow-x: hidden;
+cursor: default;
+}
+
+/* ── NOISE TEXTURE OVERLAY ── */
+body::before {
+content: ‘’;
+position: fixed;
+inset: 0;
+background-image: url(“data:image/svg+xml,%3Csvg viewBox=‘0 0 256 256’ xmlns=‘http://www.w3.org/2000/svg’%3E%3Cfilter id=‘n’%3E%3CfeTurbulence type=‘fractalNoise’ baseFrequency=‘0.9’ numOctaves=‘4’ stitchTiles=‘stitch’/%3E%3C/filter%3E%3Crect width=‘100%25’ height=‘100%25’ filter=‘url(%23n)’ opacity=‘1’/%3E%3C/svg%3E”);
+opacity: 0.035;
+pointer-events: none;
+z-index: 1000;
+}
 
 /* ── NAV ── */
-nav{position:fixed;top:0;left:0;right:0;z-index:500;height:76px;padding:0 6%;display:flex;align-items:center;justify-content:space-between;background:rgba(8,8,8,0.97);border-bottom:1px solid rgba(232,228,220,0.05);backdrop-filter:blur(20px)}
-.logo{display:flex;flex-direction:column;gap:2px}
-.logo-name{font-family:‘Playfair Display’,serif;font-size:22px;font-weight:700;color:#E8E4DC;letter-spacing:2px;line-height:1}
-.logo-name em{font-style:italic;color:#8B0000}
-.logo-loc{font-size:8px;letter-spacing:6px;text-transform:uppercase;color:#555}
-.nav-links{display:flex;gap:36px;list-style:none;position:absolute;left:50%;transform:translateX(-50%)}
-.nav-links a{font-size:11px;font-weight:500;letter-spacing:2.5px;text-transform:uppercase;color:#666;transition:color .25s;white-space:nowrap}
-.nav-links a:hover{color:#E8E4DC}
-.nav-cta{background:#8B0000;color:#E8E4DC;padding:11px 28px;font-size:10px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;transition:all .25s;white-space:nowrap}
-.nav-cta:hover{background:#A50000;transform:translateY(-1px)}
-.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;z-index:600}
-.hamburger span{width:24px;height:1.5px;background:#E8E4DC;display:block;transition:all .3s}
-.mob-menu{display:none;position:fixed;inset:0;background:rgba(8,8,8,0.98);z-index:550;flex-direction:column;align-items:center;justify-content:center;gap:0}
-.mob-menu.open{display:flex}
-.mob-menu a{font-family:‘Playfair Display’,serif;font-size:40px;font-weight:700;color:#555;padding:14px 0;transition:color .2s;text-align:center}
-.mob-menu a:hover{color:#E8E4DC}
-.mob-cta-link{background:#8B0000 !important;color:#E8E4DC !important;padding:16px 48px !important;margin-top:24px;font-size:20px !important}
+nav {
+position: fixed;
+top: 0; left: 0; right: 0;
+z-index: 999;
+display: flex;
+align-items: center;
+justify-content: space-between;
+padding: 1.2rem 3rem;
+background: rgba(10,10,10,0.92);
+backdrop-filter: blur(12px);
+border-bottom: 1px solid var(–border);
+transition: padding 0.3s;
+}
+
+.nav-logo {
+font-family: var(–font-display);
+font-size: 2rem;
+letter-spacing: 0.12em;
+color: var(–white);
+text-decoration: none;
+}
+
+.nav-logo span { color: var(–red); }
+
+.nav-links {
+display: flex;
+gap: 2.5rem;
+list-style: none;
+}
+
+.nav-links a {
+font-family: var(–font-mono);
+font-size: 0.72rem;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+color: var(–muted);
+text-decoration: none;
+transition: color 0.2s;
+}
+
+.nav-links a:hover { color: var(–red); }
+
+.nav-cta {
+font-family: var(–font-mono);
+font-size: 0.7rem;
+letter-spacing: 0.15em;
+text-transform: uppercase;
+background: var(–red);
+color: var(–white);
+padding: 0.6rem 1.4rem;
+text-decoration: none;
+transition: background 0.2s;
+clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
+}
+
+.nav-cta:hover { background: var(–red-hot); }
+
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+.hamburger span { width: 24px; height: 2px; background: var(–cream); display: block; }
 
 /* ── HERO ── */
-.hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden}
-.hero-vid{position:absolute;inset:0;z-index:0}
-.hero-vid img{width:100%;height:100%;object-fit:cover;filter:brightness(.18) contrast(1.4) saturate(.6)}
-.hero-overlay{position:absolute;inset:0;background:linear-gradient(110deg,rgba(8,8,8,.97) 42%,rgba(8,8,8,.45) 100%);z-index:1}
-.hero-noise{position:absolute;inset:0;z-index:2;opacity:.035;background-image:url(“data:image/svg+xml,%3Csvg viewBox=‘0 0 512 512’ xmlns=‘http://www.w3.org/2000/svg’%3E%3Cfilter id=‘n’%3E%3CfeTurbulence type=‘fractalNoise’ baseFrequency=‘0.75’ numOctaves=‘4’ stitchTiles=‘stitch’/%3E%3C/filter%3E%3Crect width=‘100%25’ height=‘100%25’ filter=‘url(%23n)’/%3E%3C/svg%3E”);background-size:200px}
-.hero-content{position:relative;z-index:3;padding:calc(76px + 110px) 6% 100px;max-width:720px}
-.hero-tag-wrap{display:flex;align-items:center;gap:14px;margin-bottom:36px;opacity:0;animation:fadeUp .6s .1s forwards}
-.tag-line{width:40px;height:1px;background:#8B0000}
-.tag-text{font-size:10px;font-weight:600;letter-spacing:5px;text-transform:uppercase;color:#8B0000}
-h1{font-family:‘Playfair Display’,serif;font-size:clamp(64px,10vw,120px);font-weight:700;line-height:.88;color:#E8E4DC;margin-bottom:14px;opacity:0;animation:fadeUp .6s .22s forwards}
-h1 em{font-style:italic;color:#8B0000;display:block}
-.hero-sub-tag{font-family:‘Bebas Neue’,sans-serif;font-size:clamp(14px,2vw,20px);letter-spacing:7px;color:#555;margin-bottom:28px;opacity:0;animation:fadeUp .6s .33s forwards}
-.hero-desc{font-size:17px;font-weight:300;color:#999;line-height:1.9;max-width:500px;margin-bottom:52px;opacity:0;animation:fadeUp .6s .44s forwards}
-.hero-desc strong{color:#E8E4DC;font-weight:400}
-.hero-btns{display:flex;gap:18px;flex-wrap:wrap;opacity:0;animation:fadeUp .6s .55s forwards}
-.btn-primary{background:#8B0000;color:#E8E4DC;padding:16px 44px;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;display:inline-flex;align-items:center;gap:10px;transition:all .3s}
-.btn-primary:hover{background:#A50000;transform:translateY(-2px);box-shadow:0 14px 48px rgba(139,0,0,.4)}
-.btn-outline{color:#E8E4DC;font-size:11px;font-weight:500;letter-spacing:2px;text-transform:uppercase;display:inline-flex;align-items:center;gap:8px;padding-bottom:3px;border-bottom:1px solid rgba(232,228,220,.2);transition:all .3s}
-.btn-outline:hover{color:#8B0000;border-color:#8B0000;gap:14px}
+#hero {
+min-height: 100vh;
+position: relative;
+display: flex;
+align-items: center;
+justify-content: center;
+overflow: hidden;
+padding: 0 3rem;
+}
 
-/* ── TICKER ── */
-.ticker{background:#8B0000;padding:13px 0;overflow:hidden;white-space:nowrap}
-.ticker-track{display:inline-flex;animation:tick 32s linear infinite}
-@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-.ti{font-family:‘Bebas Neue’,sans-serif;font-size:13px;letter-spacing:4px;color:rgba(232,228,220,.8);padding:0 32px}
-.sep{opacity:.3}
+.hero-bg {
+position: absolute;
+inset: 0;
+background:
+radial-gradient(ellipse 60% 60% at 70% 50%, rgba(192,57,43,0.12) 0%, transparent 60%),
+radial-gradient(ellipse 40% 80% at 20% 80%, rgba(192,57,43,0.07) 0%, transparent 50%),
+var(–black);
+}
 
-/* ── STATS ── */
-.stats{background:#0D0D0D;border-bottom:1px solid rgba(232,228,220,0.05);padding:52px 6%;display:grid;grid-template-columns:repeat(4,1fr)}
-.stat{text-align:center;position:relative}
-.stat+.stat::before{content:’’;position:absolute;left:0;top:50%;transform:translateY(-50%);height:40px;width:1px;background:rgba(232,228,220,0.05)}
-.stat-n{font-family:‘Playfair Display’,serif;font-size:58px;font-weight:700;color:#E8E4DC;line-height:1}
-.stat-n em{color:#8B0000;font-style:normal}
-.stat-l{font-size:9px;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:#555;margin-top:8px}
+.hero-lines {
+position: absolute;
+inset: 0;
+background-image:
+repeating-linear-gradient(0deg, transparent, transparent 79px, rgba(255,255,255,0.02) 80px),
+repeating-linear-gradient(90deg, transparent, transparent 79px, rgba(255,255,255,0.02) 80px);
+}
 
-/* ── SECTIONS ── */
-.sec{padding:100px 6%}
-.sec-dark{background:#0D0D0D}
-.eyebrow{display:flex;align-items:center;gap:14px;margin-bottom:18px}
-.ey-l{width:28px;height:1px;background:#8B0000;flex-shrink:0}
-.ey-t{font-size:10px;font-weight:600;letter-spacing:5px;text-transform:uppercase;color:#8B0000}
-.sec-h{font-family:‘Playfair Display’,serif;font-size:clamp(38px,5.5vw,72px);font-weight:700;color:#E8E4DC;line-height:1.02;margin-bottom:16px}
-.sec-h em{font-style:italic;color:#8B0000}
-.sec-p{font-size:15px;font-weight:300;color:#888;line-height:1.9;max-width:520px}
+.hero-content {
+position: relative;
+z-index: 2;
+max-width: 900px;
+text-align: center;
+}
+
+.hero-eyebrow {
+font-family: var(–font-mono);
+font-size: 0.7rem;
+letter-spacing: 0.35em;
+text-transform: uppercase;
+color: var(–red);
+margin-bottom: 1.5rem;
+opacity: 0;
+animation: fadeUp 0.8s 0.2s forwards;
+}
+
+.hero-title {
+font-family: var(–font-display);
+font-size: clamp(6rem, 18vw, 14rem);
+line-height: 0.88;
+letter-spacing: -0.01em;
+color: var(–white);
+opacity: 0;
+animation: fadeUp 0.9s 0.4s forwards;
+}
+
+.hero-title em {
+font-style: normal;
+color: var(–red);
+-webkit-text-stroke: 0px;
+}
+
+.hero-title .outline {
+-webkit-text-stroke: 1px rgba(245,240,235,0.3);
+color: transparent;
+}
+
+.hero-subtitle {
+font-size: 1.25rem;
+font-style: italic;
+color: var(–muted);
+margin: 1.5rem 0 2.5rem;
+letter-spacing: 0.03em;
+opacity: 0;
+animation: fadeUp 0.8s 0.6s forwards;
+}
+
+.hero-actions {
+display: flex;
+gap: 1.2rem;
+justify-content: center;
+flex-wrap: wrap;
+opacity: 0;
+animation: fadeUp 0.8s 0.8s forwards;
+}
+
+.btn-primary {
+font-family: var(–font-mono);
+font-size: 0.75rem;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+background: var(–red);
+color: var(–white);
+padding: 1rem 2.5rem;
+text-decoration: none;
+display: inline-block;
+clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+transition: background 0.2s, transform 0.2s;
+}
+
+.btn-primary:hover { background: var(–red-hot); transform: translateY(-2px); }
+
+.btn-secondary {
+font-family: var(–font-mono);
+font-size: 0.75rem;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+background: transparent;
+color: var(–cream);
+padding: 1rem 2.5rem;
+text-decoration: none;
+display: inline-block;
+border: 1px solid var(–border);
+transition: border-color 0.2s, color 0.2s;
+}
+
+.btn-secondary:hover { border-color: var(–red); color: var(–red); }
+
+.hero-scroll {
+position: absolute;
+bottom: 2.5rem;
+left: 50%;
+transform: translateX(-50%);
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 0.5rem;
+opacity: 0;
+animation: fadeUp 1s 1.2s forwards;
+}
+
+.hero-scroll span {
+font-family: var(–font-mono);
+font-size: 0.6rem;
+letter-spacing: 0.25em;
+color: var(–muted);
+}
+
+.scroll-line {
+width: 1px;
+height: 50px;
+background: linear-gradient(to bottom, var(–red), transparent);
+animation: scrollPulse 1.8s infinite;
+}
+
+/* ── SECTION COMMONS ── */
+section { position: relative; }
+
+.section-inner {
+max-width: 1200px;
+margin: 0 auto;
+padding: 7rem 3rem;
+}
+
+.section-label {
+font-family: var(–font-mono);
+font-size: 0.65rem;
+letter-spacing: 0.35em;
+text-transform: uppercase;
+color: var(–red);
+display: flex;
+align-items: center;
+gap: 1rem;
+margin-bottom: 1.2rem;
+}
+
+.section-label::after {
+content: ‘’;
+flex: 1;
+max-width: 60px;
+height: 1px;
+background: var(–red-dim);
+}
+
+.section-title {
+font-family: var(–font-display);
+font-size: clamp(3rem, 6vw, 5.5rem);
+line-height: 0.92;
+letter-spacing: 0.02em;
+color: var(–white);
+margin-bottom: 1.5rem;
+}
+
+.divider {
+width: 100%;
+height: 1px;
+background: var(–border);
+}
 
 /* ── ARTISTS ── */
-.artists-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:64px}
-.artist{position:relative;overflow:hidden;background:#161616;cursor:pointer}
-.artist img{width:100%;height:500px;object-fit:cover;object-position:center top;filter:grayscale(50%) contrast(1.15) brightness(.9);transition:all .7s;display:block}
-.artist:hover img{filter:grayscale(0%) contrast(1.1) brightness(.85);transform:scale(1.04)}
-.artist-over{position:absolute;inset:0;background:linear-gradient(to top,rgba(8,8,8,.97) 0%,rgba(8,8,8,.2) 55%,transparent 100%)}
-.artist-info{position:absolute;bottom:0;left:0;right:0;padding:32px 28px}
-.artist-n{font-size:10px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#8B0000;margin-bottom:8px}
-.artist-name{font-family:‘Playfair Display’,serif;font-size:26px;font-weight:700;color:#E8E4DC;margin-bottom:4px}
-.artist-style{font-size:10px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#8B0000;margin-bottom:10px}
-.artist-bio{font-size:12px;color:#999;line-height:1.65;margin-bottom:18px}
-.artist-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px}
-.atag{font-size:9px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#555;border:1px solid rgba(232,228,220,0.08);padding:4px 10px}
-.artist-book{background:#8B0000;color:#E8E4DC;padding:9px 20px;font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;display:inline-flex;align-items:center;gap:8px;border:none;cursor:pointer;font-family:‘DM Sans’,sans-serif;transition:all .25s}
-.artist-book:hover{background:#A50000}
+#artists { background: var(–deep); }
 
-/* ── STYLES ── */
-.styles-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(232,228,220,0.05);border:1px solid rgba(232,228,220,0.05);margin-top:60px}
-.style-card{background:#080808;padding:48px 36px;position:relative;overflow:hidden;transition:background .3s}
-.style-card::after{content:’’;position:absolute;bottom:0;left:0;width:0;height:2px;background:#8B0000;transition:width .4s}
-.style-card:hover::after{width:100%}
-.style-card:hover{background:#0D0D0D}
-.style-icon{font-size:40px;margin-bottom:18px;display:block}
-.style-name{font-family:‘Playfair Display’,serif;font-size:22px;font-weight:700;color:#E8E4DC;margin-bottom:10px}
-.style-desc{font-size:13px;color:#666;line-height:1.8;margin-bottom:14px}
-.style-who{font-size:10px;color:#8B0000;font-weight:600;letter-spacing:2px;text-transform:uppercase}
+.artists-grid {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 2px;
+margin-top: 4rem;
+}
 
-/* ── GALLERY ── */
-.gal-grid{display:grid;grid-template-columns:repeat(12,1fr);grid-template-rows:280px 280px;gap:3px;margin-top:60px}
-.g1{grid-column:span 5;grid-row:span 2}
-.g2{grid-column:span 4}
-.g3{grid-column:span 3}
-.g4{grid-column:span 3}
-.g5{grid-column:span 4}
-.gal-item{overflow:hidden;position:relative;background:#161616}
-.gal-img{width:100%;height:100%;object-fit:cover;filter:grayscale(30%) contrast(1.1) brightness(.9);transition:all .6s;display:block}
-.gal-item:hover .gal-img{transform:scale(1.06);filter:grayscale(0%) contrast(1.1) brightness(.85)}
-.gal-over{position:absolute;inset:0;background:linear-gradient(to top,rgba(139,0,0,.25) 0%,transparent 50%);opacity:0;transition:opacity .3s}
-.gal-item:hover .gal-over{opacity:1}
+.artist-card {
+position: relative;
+aspect-ratio: 3/4;
+overflow: hidden;
+background: var(–surface);
+cursor: pointer;
+}
+
+.artist-img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+filter: grayscale(80%) contrast(1.1);
+transition: filter 0.5s, transform 0.5s;
+}
+
+.artist-card:hover .artist-img {
+filter: grayscale(20%) contrast(1.05);
+transform: scale(1.04);
+}
+
+/* Placeholder silhouettes using CSS */
+.artist-placeholder {
+width: 100%;
+height: 100%;
+background: linear-gradient(160deg, #1e1e1e 0%, #131313 100%);
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 5rem;
+color: #2a2a2a;
+transition: transform 0.5s;
+}
+
+.artist-card:hover .artist-placeholder { transform: scale(1.04); }
+
+.artist-overlay {
+position: absolute;
+inset: 0;
+background: linear-gradient(to top, rgba(10,10,10,0.95) 0%, rgba(10,10,10,0.2) 50%, transparent 100%);
+display: flex;
+flex-direction: column;
+justify-content: flex-end;
+padding: 2rem;
+transition: opacity 0.3s;
+}
+
+.artist-name {
+font-family: var(–font-display);
+font-size: 2.2rem;
+letter-spacing: 0.06em;
+color: var(–white);
+line-height: 1;
+}
+
+.artist-style {
+font-family: var(–font-mono);
+font-size: 0.65rem;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+color: var(–red);
+margin-top: 0.4rem;
+}
+
+.artist-bio {
+font-size: 0.95rem;
+font-style: italic;
+color: rgba(232,221,208,0.7);
+margin-top: 0.6rem;
+line-height: 1.5;
+max-height: 0;
+overflow: hidden;
+transition: max-height 0.4s ease;
+}
+
+.artist-card:hover .artist-bio { max-height: 100px; }
+
+/* ── PORTFOLIO ── */
+#portfolio { background: var(–black); }
+
+.filter-tabs {
+display: flex;
+gap: 0.3rem;
+flex-wrap: wrap;
+margin-bottom: 3rem;
+}
+
+.filter-tab {
+font-family: var(–font-mono);
+font-size: 0.65rem;
+letter-spacing: 0.18em;
+text-transform: uppercase;
+padding: 0.5rem 1.2rem;
+border: 1px solid var(–border);
+color: var(–muted);
+background: transparent;
+cursor: pointer;
+transition: all 0.2s;
+}
+
+.filter-tab.active, .filter-tab:hover {
+border-color: var(–red);
+color: var(–red);
+}
+
+.portfolio-grid {
+display: grid;
+grid-template-columns: repeat(4, 1fr);
+grid-auto-rows: 220px;
+gap: 3px;
+}
+
+.portfolio-grid .item:nth-child(3n+1) { grid-row: span 2; }
+.portfolio-grid .item:nth-child(5n+4) { grid-column: span 2; }
+
+.portfolio-item {
+position: relative;
+overflow: hidden;
+background: var(–surface);
+cursor: pointer;
+}
+
+.portfolio-placeholder {
+width: 100%;
+height: 100%;
+display: flex;
+align-items: center;
+justify-content: center;
+transition: transform 0.4s;
+}
+
+.portfolio-item:hover .portfolio-placeholder { transform: scale(1.06); }
+
+.p-bg-1 { background: linear-gradient(135deg, #1a0f0f 0%, #2a1010 100%); }
+.p-bg-2 { background: linear-gradient(135deg, #0f0f1a 0%, #10102a 100%); }
+.p-bg-3 { background: linear-gradient(135deg, #0f1a10 0%, #10201a 100%); }
+.p-bg-4 { background: linear-gradient(135deg, #1a1a0f 0%, #252512 100%); }
+.p-bg-5 { background: linear-gradient(135deg, #1a0f1a 0%, #20102a 100%); }
+.p-bg-6 { background: linear-gradient(135deg, #1a1010 0%, #2a1515 100%); }
+.p-bg-7 { background: linear-gradient(135deg, #0f1a1a 0%, #0f2525 100%); }
+.p-bg-8 { background: linear-gradient(135deg, #181010 0%, #281515 100%); }
+
+.portfolio-svg {
+width: 60%;
+height: 60%;
+opacity: 0.15;
+}
+
+.portfolio-hover {
+position: absolute;
+inset: 0;
+background: rgba(192,57,43,0.85);
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+opacity: 0;
+transition: opacity 0.3s;
+}
+
+.portfolio-item:hover .portfolio-hover { opacity: 1; }
+
+.portfolio-hover-title {
+font-family: var(–font-display);
+font-size: 1.5rem;
+letter-spacing: 0.08em;
+color: var(–white);
+}
+
+.portfolio-hover-sub {
+font-family: var(–font-mono);
+font-size: 0.65rem;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+color: rgba(255,255,255,0.7);
+margin-top: 0.3rem;
+}
 
 /* ── BOOKING ── */
-.booking-outer{max-width:940px;margin:60px auto 0}
-
-/* PROGRESS */
-.bk-progress{display:flex;align-items:center;margin-bottom:52px}
-.bk-step{display:flex;flex-direction:column;align-items:center;gap:8px;flex:1;position:relative}
-.bk-step:not(:last-child)::after{content:’’;position:absolute;top:16px;left:60%;width:80%;height:1px;background:rgba(232,228,220,0.06);z-index:0}
-.bk-dot{width:32px;height:32px;border-radius:50%;border:1px solid rgba(232,228,220,0.1);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#555;background:#080808;position:relative;z-index:1;transition:all .35s;font-family:‘Bebas Neue’,sans-serif;letter-spacing:1px}
-.bk-step.done .bk-dot{background:#8B0000;border-color:#8B0000;color:#E8E4DC}
-.bk-step.active .bk-dot{border-color:#8B0000;color:#8B0000;box-shadow:0 0 24px rgba(139,0,0,.35)}
-.bk-label{font-size:9px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#444;transition:color .3s}
-.bk-step.active .bk-label,.bk-step.done .bk-label{color:#8B0000}
-
-/* BOOKING CARD */
-.bk-card{background:#0D0D0D;border:1px solid rgba(232,228,220,0.07);padding:56px 52px}
-.bk-title{font-family:‘Playfair Display’,serif;font-size:clamp(26px,3.5vw,40px);font-weight:700;color:#E8E4DC;margin-bottom:8px;line-height:1.1}
-.bk-title em{font-style:italic;color:#8B0000}
-.bk-hint{font-size:13px;color:#555;margin-bottom:40px;letter-spacing:.5px}
-
-/* PANEL */
-.bk-panel{display:none;animation:panelIn .4s ease}
-.bk-panel.active{display:block}
-@keyframes panelIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
-
-/* ARTIST CARDS */
-.artist-pick-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:24px}
-.ap-card{background:#161616;border:1px solid rgba(232,228,220,0.05);padding:22px 16px;cursor:pointer;transition:all .25s;text-align:center;position:relative;overflow:hidden}
-.ap-card::before{content:’’;position:absolute;top:0;left:0;right:0;height:2px;background:transparent;transition:background .3s}
-.ap-card:hover::before,.ap-card.on::before{background:#8B0000}
-.ap-card:hover,.ap-card.on{border-color:rgba(139,0,0,.25);background:#1A1A1A}
-.ap-img{width:68px;height:68px;border-radius:50%;object-fit:cover;object-position:top;margin:0 auto 12px;filter:grayscale(50%) brightness(.9);transition:filter .3s;display:block}
-.ap-card:hover .ap-img,.ap-card.on .ap-img{filter:grayscale(0%) brightness(.95)}
-.ap-name{font-family:‘Playfair Display’,serif;font-size:15px;font-weight:700;color:#E8E4DC;margin-bottom:3px}
-.ap-style{font-size:9px;color:#8B0000;letter-spacing:2px;text-transform:uppercase}
-.ap-check{position:absolute;top:10px;right:10px;width:20px;height:20px;background:#8B0000;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;color:#E8E4DC;font-weight:700;opacity:0;transform:scale(.5);transition:all .25s}
-.ap-card.on .ap-check{opacity:1;transform:scale(1)}
-
-/* OPTION SELECTORS */
-.opt-label{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#8B0000;display:block;margin-bottom:12px}
-.opt-grid{display:grid;gap:8px;margin-bottom:28px}
-.opt-grid.cols3{grid-template-columns:repeat(3,1fr)}
-.opt-grid.cols4{grid-template-columns:repeat(4,1fr)}
-.opt-grid.cols2{grid-template-columns:repeat(2,1fr)}
-.opt{background:#161616;border:1px solid rgba(232,228,220,0.05);padding:14px;cursor:pointer;transition:all .25s;text-align:center;font-size:12px;font-weight:500;color:#666;position:relative}
-.opt:hover,.opt.on{background:#1A1A1A;border-color:rgba(139,0,0,.3);color:#E8E4DC}
-.opt.on{color:#8B0000}
-.opt-icon{font-size:22px;display:block;margin-bottom:8px}
-.opt-name{font-size:13px;font-weight:600;color:#E8E4DC;margin-bottom:3px}
-.opt-sub{font-size:10px;color:#555}
-.opt.on .opt-sub{color:#666}
-
-/* AI PLANNER */
-.ai-box{background:#161616;border:1px solid rgba(139,0,0,.2);border-left:3px solid #8B0000;padding:36px 32px;margin-bottom:28px;position:relative;overflow:hidden}
-.ai-header{display:flex;align-items:center;gap:10px;margin-bottom:20px}
-.ai-pulse{width:8px;height:8px;border-radius:50%;background:#8B0000;animation:pulse 2s infinite;flex-shrink:0}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.8)}}
-.ai-label-text{font-size:9px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#8B0000}
-.ai-thinking{display:flex;align-items:center;gap:16px;padding:8px 0}
-.ai-spinner{width:20px;height:20px;border:2px solid rgba(139,0,0,.2);border-top-color:#8B0000;border-radius:50%;animation:spin 1s linear infinite;flex-shrink:0}
-@keyframes spin{to{transform:rotate(360deg)}}
-.ai-thinking-txt{font-size:14px;color:#555;font-style:italic}
-.ai-result{display:none}
-.ai-result.show{display:block}
-.ai-headline{font-family:‘Playfair Display’,serif;font-size:clamp(18px,2.5vw,26px);font-weight:700;color:#E8E4DC;line-height:1.25;margin-bottom:14px}
-.ai-headline em{font-style:italic;color:#8B0000}
-.ai-explanation{font-size:14px;color:#999;line-height:1.9;margin-bottom:24px}
-.ai-session-box{background:#0D0D0D;border:1px solid rgba(139,0,0,.25);padding:22px 28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
-.ai-sesh-name{font-family:‘Bebas Neue’,sans-serif;font-size:32px;letter-spacing:3px;color:#E8E4DC}
-.ai-sesh-dur{font-size:10px;color:#8B0000;letter-spacing:2px;text-transform:uppercase;margin-top:4px}
-.ai-dep-label{font-size:9px;color:#555;letter-spacing:2px;text-transform:uppercase;margin-bottom:4px;text-align:right}
-.ai-dep-amount{font-family:‘Bebas Neue’,sans-serif;font-size:40px;color:#8B0000;letter-spacing:2px;text-align:right;line-height:1}
-.ai-dep-note{font-size:10px;color:#555;text-align:right;margin-top:3px}
-.tcursor{display:inline-block;width:2px;height:16px;background:#8B0000;margin-left:2px;animation:blink .7s infinite;vertical-align:middle}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
-
-/* FORM */
-.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.fg{display:flex;flex-direction:column;gap:8px}
-.fg.full{grid-column:span 2}
-.fl{font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#8B0000}
-input,select,textarea{background:#161616;border:1px solid rgba(232,228,220,0.08);color:#E8E4DC;padding:14px 18px;font-size:14px;font-family:‘DM Sans’,sans-serif;font-weight:300;transition:border-color .25s;outline:none;-webkit-appearance:none;width:100%}
-input:focus,select:focus,textarea:focus{border-color:rgba(139,0,0,.5)}
-input::placeholder,textarea::placeholder{color:#333}
-select option{background:#161616;color:#E8E4DC}
-textarea{min-height:120px;resize:vertical}
-
-/* UPLOAD */
-.upload-zone{border:1px dashed rgba(232,228,220,0.12);padding:36px;text-align:center;cursor:pointer;transition:all .3s;background:#161616;position:relative}
-.upload-zone:hover{border-color:rgba(139,0,0,.4);background:#1A1A1A}
-.upload-zone input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
-.upload-icon{font-size:36px;margin-bottom:12px;display:block}
-.upload-title{font-size:13px;font-weight:600;color:#E8E4DC;margin-bottom:6px}
-.upload-hint{font-size:11px;color:#555}
-.preview-wrap{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
-.prev-img{width:72px;height:72px;object-fit:cover;border:1px solid rgba(232,228,220,0.08);display:block}
-
-/* DEPOSIT */
-.dep-card{background:#161616;border:1px solid rgba(139,0,0,.2);border-top:2px solid #8B0000;padding:32px;margin-bottom:28px}
-.dep-title{font-family:‘Bebas Neue’,sans-serif;font-size:14px;letter-spacing:4px;color:#8B0000;margin-bottom:8px}
-.dep-amount{font-family:‘Playfair Display’,serif;font-size:64px;font-weight:700;color:#E8E4DC;line-height:1;margin-bottom:8px}
-.dep-amount em{font-style:normal;color:#8B0000;font-size:36px;vertical-align:top;margin-top:8px;display:inline-block}
-.dep-note{font-size:13px;color:#666;line-height:1.8}
-.dep-note strong{color:#999;font-weight:400}
-
-/* GHL CAL */
-.cal-wrap{background:#161616;border:1px solid rgba(232,228,220,0.07);padding:28px;margin-bottom:28px}
-.cal-label{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#8B0000;margin-bottom:20px;display:block}
-
-/* NAV BTNS */
-.step-nav{display:flex;justify-content:space-between;align-items:center;margin-top:36px;gap:16px}
-.btn-back{background:transparent;color:#999;padding:14px 28px;font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;cursor:pointer;border:1px solid rgba(232,228,220,0.1);font-family:‘DM Sans’,sans-serif;transition:all .3s}
-.btn-back:hover{border-color:#999;color:#E8E4DC}
-.btn-fwd{background:#8B0000;color:#E8E4DC;padding:14px 44px;font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;cursor:pointer;border:none;font-family:‘DM Sans’,sans-serif;transition:all .3s;display:inline-flex;align-items:center;gap:10px}
-.btn-fwd:hover{background:#A50000;transform:translateY(-2px)}
-.btn-fwd:disabled{opacity:.3;cursor:not-allowed;transform:none}
-
-/* CONFIRM */
-.confirm-center{text-align:center;padding:20px 0}
-.confirm-icon{font-size:72px;margin-bottom:28px;display:block}
-.confirm-title{font-family:‘Playfair Display’,serif;font-size:clamp(36px,5vw,56px);font-weight:700;color:#E8E4DC;margin-bottom:14px}
-.confirm-title em{font-style:italic;color:#8B0000}
-.confirm-sub{font-size:16px;color:#999;max-width:500px;margin:0 auto 36px;line-height:1.9}
-.confirm-summary{background:#161616;border:1px solid rgba(232,228,220,0.07);padding:28px;max-width:500px;margin:0 auto 32px;text-align:left}
-.cs-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid rgba(232,228,220,0.05)}
-.cs-row:last-child{border-bottom:none}
-.cs-label{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#555}
-.cs-val{font-size:13px;color:#E8E4DC;font-weight:500}
-.cs-val.red{color:#8B0000}
-
-/* REVIEWS */
-.rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(232,228,220,0.05);border:1px solid rgba(232,228,220,0.05);margin-top:60px}
-.rev{background:#080808;padding:44px 36px;transition:background .3s}
-.rev:hover{background:#0D0D0D}
-.stars{display:flex;gap:3px;margin-bottom:18px}
-.stars span{color:#8B0000;font-size:16px}
-.rev-text{font-family:‘Playfair Display’,serif;font-size:15px;font-style:italic;color:#999;line-height:1.85;margin-bottom:22px}
-.rev-auth{display:flex;align-items:center;gap:14px}
-.av{width:40px;height:40px;border-radius:50%;background:#8B0000;display:flex;align-items:center;justify-content:center;font-family:‘Playfair Display’,serif;font-size:16px;font-weight:700;color:#E8E4DC;flex-shrink:0}
-.auth-name{font-size:13px;font-weight:600;color:#E8E4DC}
-.auth-meta{font-size:10px;color:#555;margin-top:2px}
-
-/* ABOUT */
-.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
-.about-img-wrap{position:relative}
-.about-img{width:100%;height:580px;object-fit:cover;filter:grayscale(25%) contrast(1.1) brightness(.85);display:block}
-.about-badge{position:absolute;bottom:-20px;right:-20px;width:160px;height:160px;background:#8B0000;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
-.ab-num{font-family:‘Bebas Neue’,sans-serif;font-size:52px;color:#E8E4DC;line-height:1;letter-spacing:2px}
-.ab-txt{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(232,228,220,.7);margin-top:4px}
-.about-body{font-size:15px;color:#888;line-height:1.9;margin-bottom:18px}
-.about-body strong{color:#E8E4DC;font-weight:400}
-.about-feats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:28px 0}
-.af{display:flex;align-items:center;gap:10px;font-size:12px;color:#888}
-.af::before{content:’’;width:6px;height:6px;background:#8B0000;border-radius:50%;flex-shrink:0}
-
-/* CTA */
-.cta{padding:100px 6%;text-align:center;position:relative;overflow:hidden;background:#080808}
-.cta::before{content:’’;position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 50%,rgba(139,0,0,.09) 0%,transparent 70%);pointer-events:none}
-.cta-h{font-family:‘Playfair Display’,serif;font-size:clamp(48px,7vw,96px);font-weight:700;color:#E8E4DC;line-height:.95;margin-bottom:20px;position:relative;z-index:1}
-.cta-h em{font-style:italic;color:#8B0000;display:block}
-.cta-p{font-size:16px;color:#888;max-width:440px;margin:0 auto 48px;line-height:1.9;position:relative;z-index:1}
-
-/* FOOTER */
-footer{background:#040404;border-top:1px solid rgba(232,228,220,0.04);padding:72px 6% 32px}
-.foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;padding-bottom:56px;border-bottom:1px solid rgba(232,228,220,0.04);margin-bottom:24px}
-.f-logo{font-family:‘Playfair Display’,serif;font-size:22px;font-weight:700;color:#E8E4DC;display:block;margin-bottom:3px}
-.f-logo em{font-style:italic;color:#8B0000}
-.f-sub{font-size:8px;letter-spacing:5px;text-transform:uppercase;color:#333;display:block;margin-bottom:14px}
-.f-desc{font-size:13px;color:#333;line-height:1.8;max-width:220px}
-.f-soc{display:flex;gap:8px;margin-top:18px}
-.soc{width:36px;height:36px;border:1px solid rgba(232,228,220,0.06);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;color:#333;transition:all .25s}
-.soc:hover{border-color:#8B0000;color:#8B0000}
-.f-col-h{font-size:9px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#333;margin-bottom:16px}
-.f-links{list-style:none;display:flex;flex-direction:column;gap:10px}
-.f-links a{font-size:13px;color:#333;transition:color .25s}
-.f-links a:hover{color:#E8E4DC}
-.f-contact{font-size:13px;color:#333;margin-bottom:8px;line-height:1.6}
-.f-contact a{color:#333;transition:color .25s}
-.f-contact a:hover{color:#E8E4DC}
-.foot-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
-.f-copy{font-size:11px;color:#2A2A2A}
-.f-pow a{font-size:11px;color:#2A2A2A;transition:color .25s}
-.f-pow a:hover{color:#666}
-
-/* ANIMATIONS */
-@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
-
-/* RESPONSIVE */
-@media(max-width:1200px){
-.artists-grid{grid-template-columns:1fr 1fr}
-.gal-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto}
-.g1,.g2,.g3,.g4,.g5{grid-column:span 1;height:260px}
-.foot-grid{grid-template-columns:1fr 1fr;gap:32px}
-.about-grid{grid-template-columns:1fr;gap:48px}
-.about-img{height:420px}
-.about-badge{display:none}
+#booking {
+background: var(–deep);
+position: relative;
+overflow: hidden;
 }
-@media(max-width:1000px){
-.nav-links{display:none}
-.stats{grid-template-columns:repeat(2,1fr)}
-.stat+.stat::before{display:none}
-.styles-grid{grid-template-columns:1fr 1fr}
-.bk-card{padding:36px 28px}
+
+#booking::before {
+content: ‘BOOK’;
+position: absolute;
+right: -2rem;
+top: 50%;
+transform: translateY(-50%) rotate(90deg);
+font-family: var(–font-display);
+font-size: 20vw;
+color: rgba(192,57,43,0.04);
+pointer-events: none;
+white-space: nowrap;
 }
-@media(max-width:640px){
-nav{padding:0 5%}
-.hamburger{display:flex}
-.sec{padding:68px 5%}
-.artists-grid{grid-template-columns:1fr}
-.styles-grid{grid-template-columns:1fr}
-.rev-grid{grid-template-columns:1fr}
-.foot-grid{grid-template-columns:1fr}
-.foot-bottom{flex-direction:column;text-align:center}
-.hero-btns{flex-direction:column;align-items:flex-start}
-.artist-pick-grid{grid-template-columns:1fr 1fr}
-.form-grid{grid-template-columns:1fr}
-.fg.full{grid-column:span 1}
-.opt-grid.cols4,.opt-grid.cols3{grid-template-columns:1fr 1fr}
-.bk-progress{display:none}
-.bk-card{padding:28px 20px}
-.step-nav{flex-direction:column-reverse}
-.btn-back,.btn-fwd{width:100%;justify-content:center}
-.about-img{height:300px}
+
+.booking-layout {
+display: grid;
+grid-template-columns: 1fr 1.4fr;
+gap: 5rem;
+align-items: start;
+}
+
+.booking-info p {
+font-size: 1.1rem;
+line-height: 1.7;
+color: rgba(232,221,208,0.7);
+margin-bottom: 2.5rem;
+font-style: italic;
+}
+
+.booking-steps {
+list-style: none;
+display: flex;
+flex-direction: column;
+gap: 1.2rem;
+}
+
+.booking-step {
+display: flex;
+align-items: flex-start;
+gap: 1.2rem;
+}
+
+.step-num {
+font-family: var(–font-display);
+font-size: 2rem;
+line-height: 1;
+color: var(–red-dim);
+flex-shrink: 0;
+width: 2rem;
+text-align: right;
+}
+
+.step-text strong {
+display: block;
+font-family: var(–font-mono);
+font-size: 0.7rem;
+letter-spacing: 0.15em;
+text-transform: uppercase;
+color: var(–cream);
+margin-bottom: 0.2rem;
+}
+
+.step-text span {
+font-size: 0.95rem;
+color: var(–muted);
+font-style: italic;
+}
+
+/* GHL BOOKING WIDGET PLACEHOLDER */
+.ghl-widget-container {
+background: var(–surface);
+border: 1px solid var(–border);
+position: relative;
+overflow: hidden;
+}
+
+.ghl-placeholder {
+padding: 3rem;
+}
+
+.ghl-tag {
+font-family: var(–font-mono);
+font-size: 0.6rem;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+color: var(–red);
+margin-bottom: 2rem;
+display: flex;
+align-items: center;
+gap: 0.5rem;
+}
+
+.ghl-tag::before {
+content: ‘’;
+width: 6px;
+height: 6px;
+background: var(–red);
+display: block;
+animation: blink 1.5s infinite;
+}
+
+.booking-form {
+display: flex;
+flex-direction: column;
+gap: 1.2rem;
+}
+
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+.form-group {
+display: flex;
+flex-direction: column;
+gap: 0.4rem;
+}
+
+.form-group label {
+font-family: var(–font-mono);
+font-size: 0.62rem;
+letter-spacing: 0.18em;
+text-transform: uppercase;
+color: var(–muted);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+background: var(–black);
+border: 1px solid var(–border);
+color: var(–cream);
+padding: 0.8rem 1rem;
+font-family: var(–font-body);
+font-size: 1rem;
+outline: none;
+transition: border-color 0.2s;
+width: 100%;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus { border-color: var(–red); }
+
+.form-group select option { background: var(–black); }
+
+.form-group textarea { resize: vertical; min-height: 100px; }
+
+.form-submit {
+font-family: var(–font-mono);
+font-size: 0.75rem;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+background: var(–red);
+color: var(–white);
+padding: 1.1rem 2rem;
+border: none;
+cursor: pointer;
+clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+transition: background 0.2s;
+width: 100%;
+margin-top: 0.5rem;
+}
+
+.form-submit:hover { background: var(–red-hot); }
+
+.form-note {
+font-size: 0.85rem;
+font-style: italic;
+color: var(–muted);
+text-align: center;
+margin-top: 0.5rem;
+}
+
+/* ── PRICING / FAQ ── */
+#pricing { background: var(–black); }
+
+.pricing-layout {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 5rem;
+margin-top: 4rem;
+}
+
+.pricing-table {
+border: 1px solid var(–border);
+}
+
+.pricing-header {
+background: var(–surface);
+padding: 1.2rem 1.8rem;
+font-family: var(–font-display);
+font-size: 1.5rem;
+letter-spacing: 0.08em;
+border-bottom: 1px solid var(–border);
+}
+
+.pricing-row {
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 1rem 1.8rem;
+border-bottom: 1px solid rgba(42,42,42,0.5);
+transition: background 0.2s;
+}
+
+.pricing-row:last-child { border-bottom: none; }
+.pricing-row:hover { background: rgba(192,57,43,0.05); }
+
+.pricing-label {
+font-size: 1rem;
+color: var(–cream);
+}
+
+.pricing-label small {
+display: block;
+font-size: 0.82rem;
+font-style: italic;
+color: var(–muted);
+margin-top: 0.1rem;
+}
+
+.pricing-price {
+font-family: var(–font-mono);
+font-size: 0.8rem;
+color: var(–red);
+text-align: right;
+white-space: nowrap;
+}
+
+/* FAQ */
+.faq-list { display: flex; flex-direction: column; }
+
+.faq-item {
+border-bottom: 1px solid var(–border);
+overflow: hidden;
+}
+
+.faq-question {
+width: 100%;
+background: none;
+border: none;
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 1.3rem 0;
+cursor: pointer;
+text-align: left;
+gap: 1rem;
+}
+
+.faq-question span {
+font-size: 1.05rem;
+color: var(–cream);
+font-family: var(–font-body);
+}
+
+.faq-arrow {
+font-family: var(–font-mono);
+font-size: 0.8rem;
+color: var(–red);
+flex-shrink: 0;
+transition: transform 0.3s;
+}
+
+.faq-item.open .faq-arrow { transform: rotate(45deg); }
+
+.faq-answer {
+max-height: 0;
+overflow: hidden;
+transition: max-height 0.35s ease, padding 0.3s;
+}
+
+.faq-item.open .faq-answer { max-height: 200px; padding-bottom: 1.2rem; }
+
+.faq-answer p {
+font-size: 0.95rem;
+line-height: 1.7;
+color: var(–muted);
+font-style: italic;
+}
+
+/* ── CONTACT ── */
+#contact { background: var(–deep); }
+
+.contact-layout {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 5rem;
+margin-top: 4rem;
+}
+
+.contact-details { display: flex; flex-direction: column; gap: 2.5rem; }
+
+.contact-block {}
+
+.contact-block-label {
+font-family: var(–font-mono);
+font-size: 0.62rem;
+letter-spacing: 0.22em;
+text-transform: uppercase;
+color: var(–red);
+margin-bottom: 0.7rem;
+}
+
+.contact-block p, .contact-block a {
+font-size: 1.1rem;
+line-height: 1.6;
+color: var(–cream);
+text-decoration: none;
+display: block;
+}
+
+.contact-block a:hover { color: var(–red); }
+
+.hours-grid {
+display: grid;
+grid-template-columns: auto 1fr;
+gap: 0.2rem 1.5rem;
+}
+
+.hours-day {
+font-family: var(–font-mono);
+font-size: 0.7rem;
+letter-spacing: 0.1em;
+color: var(–muted);
+text-transform: uppercase;
+}
+
+.hours-time {
+font-size: 0.95rem;
+color: var(–cream);
+}
+
+.map-placeholder {
+background: var(–surface);
+border: 1px solid var(–border);
+height: 100%;
+min-height: 380px;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+gap: 1rem;
+position: relative;
+overflow: hidden;
+}
+
+.map-placeholder::before {
+content: ‘’;
+position: absolute;
+inset: 0;
+background:
+repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(255,255,255,0.03) 40px),
+repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(255,255,255,0.03) 40px);
+}
+
+.map-pin {
+font-size: 3rem;
+position: relative;
+z-index: 1;
+animation: pinPulse 2s infinite;
+}
+
+.map-label {
+font-family: var(–font-mono);
+font-size: 0.65rem;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+color: var(–muted);
+z-index: 1;
+}
+
+.map-address {
+font-size: 0.95rem;
+font-style: italic;
+color: var(–cream);
+z-index: 1;
+text-align: center;
+}
+
+.social-links {
+display: flex;
+gap: 1rem;
+margin-top: 0.5rem;
+}
+
+.social-link {
+font-family: var(–font-mono);
+font-size: 0.65rem;
+letter-spacing: 0.15em;
+text-transform: uppercase;
+color: var(–muted);
+text-decoration: none;
+padding: 0.5rem 1rem;
+border: 1px solid var(–border);
+transition: all 0.2s;
+}
+
+.social-link:hover { border-color: var(–red); color: var(–red); }
+
+/* ── FOOTER ── */
+footer {
+background: var(–black);
+border-top: 1px solid var(–border);
+padding: 3rem;
+display: flex;
+justify-content: space-between;
+align-items: center;
+flex-wrap: wrap;
+gap: 1rem;
+}
+
+.footer-logo {
+font-family: var(–font-display);
+font-size: 2rem;
+letter-spacing: 0.1em;
+color: var(–white);
+}
+
+.footer-logo span { color: var(–red); }
+
+.footer-copy {
+font-family: var(–font-mono);
+font-size: 0.6rem;
+letter-spacing: 0.18em;
+color: var(–muted);
+text-transform: uppercase;
+}
+
+.footer-links { display: flex; gap: 2rem; }
+
+.footer-links a {
+font-family: var(–font-mono);
+font-size: 0.6rem;
+letter-spacing: 0.18em;
+text-transform: uppercase;
+color: var(–muted);
+text-decoration: none;
+transition: color 0.2s;
+}
+
+.footer-links a:hover { color: var(–red); }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+from { opacity: 0; transform: translateY(24px); }
+to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scrollPulse {
+0%, 100% { opacity: 0.3; transform: scaleY(0.8); }
+50%       { opacity: 1;   transform: scaleY(1); }
+}
+
+@keyframes blink {
+0%, 100% { opacity: 1; }
+50%       { opacity: 0.3; }
+}
+
+@keyframes pinPulse {
+0%, 100% { transform: translateY(0); }
+50%       { transform: translateY(-6px); }
+}
+
+/* Scroll reveal */
+.reveal {
+opacity: 0;
+transform: translateY(30px);
+transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.visible {
+opacity: 1;
+transform: translateY(0);
+}
+
+/* ── MOBILE ── */
+@media (max-width: 900px) {
+nav { padding: 1rem 1.5rem; }
+.nav-links { display: none; }
+.hamburger { display: flex; }
+.section-inner { padding: 5rem 1.5rem; }
+.artists-grid { grid-template-columns: 1fr 1fr; }
+.portfolio-grid { grid-template-columns: 1fr 1fr; }
+.portfolio-grid .item:nth-child(3n+1) { grid-row: span 1; }
+.portfolio-grid .item:nth-child(5n+4) { grid-column: span 1; }
+.booking-layout { grid-template-columns: 1fr; gap: 3rem; }
+.pricing-layout { grid-template-columns: 1fr; gap: 3rem; }
+.contact-layout { grid-template-columns: 1fr; gap: 3rem; }
+.form-row { grid-template-columns: 1fr; }
+footer { flex-direction: column; text-align: center; }
+.hero-title { font-size: clamp(4.5rem, 22vw, 8rem); }
+}
+
+@media (max-width: 600px) {
+.artists-grid { grid-template-columns: 1fr; }
+.portfolio-grid { grid-template-columns: 1fr 1fr; }
+}
+
+/* Red accent bar top */
+.top-bar {
+height: 3px;
+background: linear-gradient(90deg, var(–red-dim), var(–red), var(–red-hot), var(–red), var(–red-dim));
+background-size: 200% 100%;
+animation: slideBar 3s linear infinite;
+}
+
+@keyframes slideBar {
+0%   { background-position: 0% 0%; }
+100% { background-position: 200% 0%; }
 }
 </style>
 
 </head>
 <body>
 
+<div class="top-bar"></div>
+
 <!-- NAV -->
 
-<nav>
-  <div class="logo">
-    <span class="logo-name"><em>Trust</em> Tattoo</span>
-    <span class="logo-loc">Santa Cruz, CA · Est. 2017</span>
-  </div>
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">TRUST<span>.</span></a>
   <ul class="nav-links">
     <li><a href="#artists">Artists</a></li>
-    <li><a href="#styles">Styles</a></li>
-    <li><a href="#gallery">Gallery</a></li>
-    <li><a href="#booking">Book Now</a></li>
-    <li><a href="#about">About</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#contact">Contact</a></li>
   </ul>
   <a href="#booking" class="nav-cta">Book Now</a>
-  <div class="hamburger" id="ham"><span></span><span></span><span></span></div>
+  <div class="hamburger" id="hamburger">
+    <span></span><span></span><span></span>
+  </div>
 </nav>
-
-<!-- MOB MENU -->
-
-<div class="mob-menu" id="mob">
-  <a href="#artists" onclick="closeMob()">Artists</a>
-  <a href="#styles" onclick="closeMob()">Styles</a>
-  <a href="#gallery" onclick="closeMob()">Gallery</a>
-  <a href="#about" onclick="closeMob()">About</a>
-  <a href="#booking" onclick="closeMob()" class="mob-cta-link">Book Now →</a>
-</div>
 
 <!-- HERO -->
 
-<section class="hero" id="top">
-  <div class="hero-vid">
-    <img src="https://images.pexels.com/photos/13345926/pexels-photo-13345926.jpeg?auto=compress&cs=tinysrgb&w=1800" alt="Trust Tattoo">
-  </div>
-  <div class="hero-overlay"></div>
-  <div class="hero-noise"></div>
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-lines"></div>
   <div class="hero-content">
-    <div class="hero-tag-wrap">
-      <div class="tag-line"></div>
-      <span class="tag-text">Santa Cruz, California · Est. 2017</span>
+    <p class="hero-eyebrow">Santa Cruz, California · Est. 2019</p>
+    <h1 class="hero-title">
+      TRUST<br>
+      <span class="outline">TAT</span><em>TOO</em>
+    </h1>
+    <p class="hero-subtitle">Handcrafted ink by artists who give a damn.</p>
+    <div class="hero-actions">
+      <a href="#booking" class="btn-primary">Book a Session</a>
+      <a href="#portfolio" class="btn-secondary">View Work</a>
     </div>
-    <h1>Art You<em>Wear Forever.</em></h1>
-    <div class="hero-sub-tag">Custom Tattoo Studio · By Appointment</div>
-    <p class="hero-desc">Trust Tattoo is <strong>Santa Cruz's premier custom tattoo studio.</strong> World-class artists. Every style. Every vision. Permanent art created with precision, passion, and absolute trust in the craft.</p>
-    <div class="hero-btns">
-      <a href="#booking" class="btn-primary">Book Your Session →</a>
-      <a href="#artists" class="btn-outline">Meet The Artists →</a>
-    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
   </div>
 </section>
-
-<!-- TICKER -->
-
-<div class="ticker">
-  <div class="ticker-track">
-    <span class="ti">CUSTOM TATTOOS</span><span class="sep ti">✦</span>
-    <span class="ti">WORLD CLASS ARTISTS</span><span class="sep ti">✦</span>
-    <span class="ti">$100 DEPOSIT TO BOOK</span><span class="sep ti">✦</span>
-    <span class="ti">BLACK & GREY · COLOR · REALISM</span><span class="sep ti">✦</span>
-    <span class="ti">SANTA CRUZ CA</span><span class="sep ti">✦</span>
-    <span class="ti">BY APPOINTMENT ONLY</span><span class="sep ti">✦</span>
-    <span class="ti">WALK-INS WELCOME</span><span class="sep ti">✦</span>
-    <span class="ti">CUSTOM TATTOOS</span><span class="sep ti">✦</span>
-    <span class="ti">WORLD CLASS ARTISTS</span><span class="sep ti">✦</span>
-    <span class="ti">$100 DEPOSIT TO BOOK</span><span class="sep ti">✦</span>
-    <span class="ti">BLACK & GREY · COLOR · REALISM</span><span class="sep ti">✦</span>
-    <span class="ti">SANTA CRUZ CA</span><span class="sep ti">✦</span>
-    <span class="ti">BY APPOINTMENT ONLY</span><span class="sep ti">✦</span>
-    <span class="ti">WALK-INS WELCOME</span><span class="sep ti">✦</span>
-  </div>
-</div>
-
-<!-- STATS -->
-
-<div class="stats">
-  <div class="stat"><div class="stat-n">5</div><div class="stat-l">Master Artists</div></div>
-  <div class="stat"><div class="stat-n">4.<em>9</em></div><div class="stat-l">Star Rating</div></div>
-  <div class="stat"><div class="stat-n">15<em>K+</em></div><div class="stat-l">Pieces Completed</div></div>
-  <div class="stat"><div class="stat-n">7+</div><div class="stat-l">Years in Santa Cruz</div></div>
-</div>
 
 <!-- ARTISTS -->
 
-<section class="sec" id="artists">
-  <div class="eyebrow"><div class="ey-l"></div><span class="ey-t">The Crew</span></div>
-  <h2 class="sec-h">Meet Your <em>Artists</em></h2>
-  <p class="sec-p">Five world-class artists under one roof. Each a master of their style. Book directly with your artist — they'll remember every detail of your vision.</p>
-  <div class="artists-grid">
-    <div class="artist">
-      <img src="https://images.pexels.com/photos/13345926/pexels-photo-13345926.jpeg?auto=compress&cs=tinysrgb&w=800&h=900&fit=crop" alt="Artist">
-      <div class="artist-over"></div>
-      <div class="artist-info">
-        <div class="artist-n">ARTIST 01</div>
-        <div class="artist-name">Marcus Cole</div>
-        <div class="artist-style">Black & Grey Realism</div>
-        <div class="artist-bio">Hyper-realistic black and grey portraits and large-scale custom work. Marcus's precision is unmatched — every piece looks like a photograph on skin.</div>
-        <div class="artist-tags"><span class="atag">Portraits</span><span class="atag">Realism</span><span class="atag">Large Scale</span></div>
-        <button class="artist-book" onclick="bookArtist('Marcus Cole')">Book With Marcus →</button>
-      </div>
+<section id="artists">
+  <div class="section-inner">
+    <div class="section-label reveal">Our Artists</div>
+    <h2 class="section-title reveal">The <em style="font-style:italic;color:var(--red)">Crew</em></h2>
+
+```
+<div class="artists-grid reveal">
+  <!-- Artist 1 -->
+  <div class="artist-card">
+    <div class="artist-placeholder">
+      <svg viewBox="0 0 80 120" width="80" fill="currentColor" opacity="0.3"><ellipse cx="40" cy="28" rx="18" ry="20"/><path d="M10 120 Q10 72 40 68 Q70 72 70 120Z"/></svg>
     </div>
-    <div class="artist">
-      <img src="https://images.pexels.com/photos/4429278/pexels-photo-6024213.jpeg?auto=compress&cs=tinysrgb&w=800&h=900&fit=crop" alt="Artist">
-      <div class="artist-over"></div>
-      <div class="artist-info">
-        <div class="artist-n">ARTIST 02</div>
-        <div class="artist-name">Elena Vega</div>
-        <div class="artist-style">Fine Line · Botanical</div>
-        <div class="artist-bio">Ultra-delicate fine line work with incredible precision. Elena specializes in florals, geometric patterns, and scripts drawn impossibly thin.</div>
-        <div class="artist-tags"><span class="atag">Fine Line</span><span class="atag">Botanical</span><span class="atag">Geometric</span></div>
-        <button class="artist-book" onclick="bookArtist('Elena Vega')">Book With Elena →</button>
-      </div>
+    <div class="artist-overlay">
+      <div class="artist-name">Marcus Reyes</div>
+      <div class="artist-style">Black &amp; Grey · Realism</div>
+      <div class="artist-bio">10 years pushing graphite shadows into skin. Portraits, nature studies, the kind of work that stops people mid-street.</div>
     </div>
-    <div class="artist">
-      <img src="https://images.pexels.com/photos/4101143/pexels-photo-7878273.jpeg?auto=compress&cs=tinysrgb&w=800&h=900&fit=crop" alt="Artist">
-      <div class="artist-over"></div>
-      <div class="artist-info">
-        <div class="artist-n">ARTIST 03</div>
-        <div class="artist-name">Diego Santos</div>
-        <div class="artist-style">Traditional · Chicano</div>
-        <div class="artist-bio">Bold lines, deep black ink, and cultural storytelling that runs through generations. Diego's traditional work ages like fine art.</div>
-        <div class="artist-tags"><span class="atag">Traditional</span><span class="atag">Chicano</span><span class="atag">Script</span></div>
-        <button class="artist-book" onclick="bookArtist('Diego Santos')">Book With Diego →</button>
-      </div>
+  </div>
+  <!-- Artist 2 -->
+  <div class="artist-card">
+    <div class="artist-placeholder">
+      <svg viewBox="0 0 80 120" width="80" fill="currentColor" opacity="0.3"><ellipse cx="40" cy="28" rx="18" ry="20"/><path d="M10 120 Q10 72 40 68 Q70 72 70 120Z"/></svg>
     </div>
+    <div class="artist-overlay">
+      <div class="artist-name">Sable Cruz</div>
+      <div class="artist-style">Neo-Traditional · Floral</div>
+      <div class="artist-bio">Bold lines, saturated color, compositions that breathe. Sable brings a fine-art eye to every piece.</div>
+    </div>
+  </div>
+  <!-- Artist 3 -->
+  <div class="artist-card">
+    <div class="artist-placeholder">
+      <svg viewBox="0 0 80 120" width="80" fill="currentColor" opacity="0.3"><ellipse cx="40" cy="28" rx="18" ry="20"/><path d="M10 120 Q10 72 40 68 Q70 72 70 120Z"/></svg>
+    </div>
+    <div class="artist-overlay">
+      <div class="artist-name">Dante Orr</div>
+      <div class="artist-style">Japanese · Tebori</div>
+      <div class="artist-bio">Classically trained in Osaka. Fluid dragons, koi, and hannya rendered with old-world weight and movement.</div>
+    </div>
+  </div>
+</div>
+```
+
   </div>
 </section>
 
-<!-- STYLES -->
+<!-- PORTFOLIO -->
 
-<section class="sec sec-dark" id="styles">
-  <div class="eyebrow"><div class="ey-l"></div><span class="ey-t">What We Do</span></div>
-  <h2 class="sec-h">Every <em>Style.</em></h2>
-  <p class="sec-p">From hyper-realistic portraits to bold traditional flash — our artists cover every style with mastery. Tell us your vision and we'll match you with the right artist.</p>
-  <div class="styles-grid">
-    <div class="style-card">
-      <span class="style-icon">🖤</span>
-      <div class="style-name">Black & Grey Realism</div>
-      <div class="style-desc">Photorealistic portraits, nature, and concepts rendered in stunning black and grey depth. The most technically demanding style — done masterfully.</div>
-      <div class="style-who">Marcus Cole</div>
+<section id="portfolio">
+  <div class="section-inner">
+    <div class="section-label reveal">The Work</div>
+    <h2 class="section-title reveal">Portfolio</h2>
+
+```
+<div class="filter-tabs reveal">
+  <button class="filter-tab active">All</button>
+  <button class="filter-tab">Black &amp; Grey</button>
+  <button class="filter-tab">Color</button>
+  <button class="filter-tab">Traditional</button>
+  <button class="filter-tab">Japanese</button>
+  <button class="filter-tab">Script</button>
+</div>
+
+<div class="portfolio-grid reveal">
+  <!-- 8 placeholder tattoo items -->
+  <div class="portfolio-item item">
+    <div class="portfolio-placeholder p-bg-1">
+      <svg class="portfolio-svg" viewBox="0 0 100 100" fill="none" stroke="#c0392b" stroke-width="1.5">
+        <circle cx="50" cy="50" r="35"/><path d="M50 15 L60 40 L85 40 L65 57 L73 82 L50 67 L27 82 L35 57 L15 40 L40 40Z"/>
+      </svg>
     </div>
-    <div class="style-card">
-      <span class="style-icon">🎨</span>
-      <div class="style-name">Full Color</div>
-      <div class="style-desc">Vibrant, rich color from traditional American to neo-traditional. Bold saturation that holds for decades when done right.</div>
-      <div class="style-who">Diego Santos · Marcus Cole</div>
-    </div>
-    <div class="style-card">
-      <span class="style-icon">✏️</span>
-      <div class="style-name">Fine Line</div>
-      <div class="style-desc">Ultra-delicate linework with incredible precision. Florals, scripts, and geometric patterns drawn impossibly thin and beautifully.</div>
-      <div class="style-who">Elena Vega</div>
-    </div>
-    <div class="style-card">
-      <span class="style-icon">💀</span>
-      <div class="style-name">Traditional</div>
-      <div class="style-desc">Bold black outlines, classic imagery, and a style that's been defining West Coast culture for decades. Timeless and powerful.</div>
-      <div class="style-who">Diego Santos</div>
-    </div>
-    <div class="style-card">
-      <span class="style-icon">⬛</span>
-      <div class="style-name">Blackwork</div>
-      <div class="style-desc">Solid black geometric patterns, tribal-inspired designs, and bold abstract work. Striking, timeless, and impossible to ignore.</div>
-      <div class="style-who">Marcus Cole · Elena Vega</div>
-    </div>
-    <div class="style-card">
-      <span class="style-icon">🌸</span>
-      <div class="style-name">Japanese</div>
-      <div class="style-desc">Traditional Japanese imagery with flowing composition — koi, tigers, dragons, peonies. Bold outlines and rich shading that ages beautifully.</div>
-      <div class="style-who">Diego Santos</div>
-    </div>
+    <div class="portfolio-hover"><div class="portfolio-hover-title">Dark Star</div><div class="portfolio-hover-sub">Black &amp; Grey · Marcus</div></div>
   </div>
-</section>
+  <div class="portfolio-item item">
+    <div class="portfolio-placeholder p-bg-2">
+      <svg class="portfolio-svg" viewBox="0 0 100 100" fill="none" stroke="#6a8ec0" stroke-width="1.5">
+        <path d="M50 10 Q80 30 80 60 Q80 85 50 90 Q20 85 20 60 Q20 30 50 10Z"/>
+        <path d="M50 25 Q68 40 68 60 Q68 78 50 82 Q32 78 32 60 Q32 40 50 25Z"/>
+      </svg>
+    </div>
+    <div class="portfolio-hover"><div class="portfolio-hover-title">Ocean Eye</div><div class="portfolio-hover-sub">Neo-Trad · Sable</div></div>
+  </div>
+  <div class="portfolio-item item">
+    <div class="portfolio-placeholder p-bg-3">
+      <svg class="portfolio-svg" viewBox="0 0 100 150" fill="none" stroke="#4a8060" stroke-width="1.5">
+        <path d="M50 10 Q60 25 55 45 Q70 35 75 55 Q65 50 60 70 Q75 65 70 90 Q55 80 50 100 Q45 80 30 90 Q25 65 40 70 Q35 50 25 55 Q30 35 45 45 Q40 25 50 10Z"/>
+      </svg>
+    </div>
+    <div class="portfolio-hover"><div class="portfolio-hover-title">Koi Run</div><div class="portfolio-hover-sub">Japanese · Dante</div></div>
+  </div>
+  <div class="portfolio-item item">
+    <div class="portfolio-placeholder p-bg-4">
+      <svg class="portfolio-svg" viewBox="0 0 100 100" fill="none" stroke="#c0a030" stroke-width="1.5">
+        <path d="M20 80 Q30 20 50 10 Q70 20 80 80" />
+        <path d="M30 80 Q40 40 50 30 Q60 40 70 80"/>
+        <line x1="50" y1="30" x2="50" y2="90"/>
+        <circle cx="50" cy="12" r="6"/>
+      </svg>
+    </div>
+    <div class="portfolio-hover"><div class="portfolio-hover-title">Sacred Flame</div><div class="portfolio-hover-sub">Traditional · Marcus</div></div>
+  </div>
+  <div class="portfolio-item item">
+    <div class="portfolio-placeholder p-bg-5">
+      <svg class="portfolio-svg" viewBox="0 0 100 100" fill="none" stroke="#9060c0" stroke-width="1.5">
+        <path d="M10 50 Q25 20 50 50 Q75 80 90 50"/>
+        <path d="M10 50 Q25 80 50 50 Q75 20 90 50"/>
+        <circle cx="50" cy="50" r="8"/>
+      </svg>
+    </div>
+    <div class="portfolio-hover"><div class="portfolio-hover-title">Wave Form</div><div class="portfolio-hover-sub">Geometric · Sable</div></div>
+  </div>
+  <div class="portfolio-item item">
+    <div class="portfolio-placeholder p-bg-6">
+      <svg class="portfolio-svg" viewBox="0 0 100 100" fill="none" stroke="#c05030" stroke-width="1.5">
+        <path d="M50 10 L90 85 L10 85 Z"/>
+        <path d="M50 30 L76 78 L24 78 Z"/>
+        <path d="M50 50 L62 71 L38 71 Z"/>
+      </svg>
+    </div>
+    <div class="portfolio-hover"><div class="portfolio-hover-title">Trifold</div><div class="portfolio-hover-sub">Blackwork · Dante</div></div>
+  </div>
+  <div class="portfolio-item item">
+    <div class="portfolio-placeholder p-bg-7">
+      <svg class="portfolio-svg" viewBox="0 0 100 100" fill="none" stroke="#30a0a0" stroke-width="1.5">
+        <circle cx="50" cy="50" r="35"/>
+        <circle cx="50" cy="50" r="25"/>
+        <circle cx="50" cy="50" r="15"/>
+        <line x1="50" y1="15" x2="50" y2="85"/>
+        <line x1="15" y1="50" x2="85" y2="50"/>
+      </svg>
+    </div>
+    <div class="portfolio-hover"><div class="portfolio-hover-title">Still Point</div><div class="portfolio-hover-sub">Fine Line · Sable</div></div>
+  </div>
+  <div class="portfolio-item item">
+    <div class="portfolio-placeholder p-bg-8">
+      <svg class="portfolio-svg" viewBox="0 0 100 100" fill="none" stroke="#c03030" stroke-width="1.5">
+        <path d="M50 20 Q70 20 75 40 Q80 60 65 72 Q50 85 35 72 Q20 60 25 40 Q30 20 50 20Z"/>
+        <path d="M42 38 L50 28 L58 38 L55 52 L45 52Z"/>
+      </svg>
+    </div>
+    <div class="portfolio-hover"><div class="portfolio-hover-title">Blood Rose</div><div class="portfolio-hover-sub">Neo-Trad · Marcus</div></div>
+  </div>
+</div>
+```
 
-<!-- GALLERY -->
-
-<section class="sec" id="gallery">
-  <div class="eyebrow"><div class="ey-l"></div><span class="ey-t">The Work</span></div>
-  <h2 class="sec-h">The <em>Portfolio</em></h2>
-  <p class="sec-p">Every piece is a collaboration between artist and client. Here's a selection of recent work from the Trust Tattoo family.</p>
-  <div class="gal-grid">
-    <div class="gal-item g1"><img class="gal-img" src="https://images.pexels.com/photos/13345926/pexels-photo-13345926.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Tattoo work"><div class="gal-over"></div></div>
-    <div class="gal-item g2"><img class="gal-img" src="https://images.pexels.com/photos/4429278/pexels-photo-6024213.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Tattoo work"><div class="gal-over"></div></div>
-    <div class="gal-item g3"><img class="gal-img" src="https://images.pexels.com/photos/4429279/pexels-photo-1906704.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Tattoo work"><div class="gal-over"></div></div>
-    <div class="gal-item g4"><img class="gal-img" src="https://images.pexels.com/photos/4101143/pexels-photo-7878273.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Tattoo work"><div class="gal-over"></div></div>
-    <div class="gal-item g5"><img class="gal-img" src="https://images.pexels.com/photos/4429277/pexels-photo-4125667.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Tattoo work"><div class="gal-over"></div></div>
   </div>
 </section>
 
 <!-- BOOKING -->
 
-<section class="sec sec-dark" id="booking">
-  <div class="eyebrow"><div class="ey-l"></div><span class="ey-t">Book Your Session</span></div>
-  <h2 class="sec-h">Start Your <em>Journey.</em></h2>
-  <p class="sec-p">Our AI session planner analyzes your tattoo idea and recommends exactly how long to book. A $100 deposit secures your appointment — it goes toward your final price.</p>
-
-  <div class="booking-outer">
-    <!-- PROGRESS -->
-    <div class="bk-progress">
-      <div class="bk-step active" id="bs1"><div class="bk-dot">1</div><div class="bk-label">Artist</div></div>
-      <div class="bk-step" id="bs2"><div class="bk-dot">2</div><div class="bk-label">Tattoo</div></div>
-      <div class="bk-step" id="bs3"><div class="bk-dot">AI</div><div class="bk-label">AI Planner</div></div>
-      <div class="bk-step" id="bs4"><div class="bk-dot">3</div><div class="bk-label">Details</div></div>
-      <div class="bk-step" id="bs5"><div class="bk-dot">4</div><div class="bk-label">Book & Pay</div></div>
-      <div class="bk-step" id="bs6"><div class="bk-dot">✦</div><div class="bk-label">Done</div></div>
-    </div>
+<section id="booking">
+  <div class="section-inner">
+    <div class="section-label reveal">Reserve Your Spot</div>
+    <h2 class="section-title reveal">Book a <em style="font-style:italic;color:var(--red)">Session</em></h2>
 
 ```
-<div class="bk-card">
+<div class="booking-layout">
+  <!-- Left: info -->
+  <div class="booking-info reveal">
+    <p>Every piece starts with a conversation. Tell us your vision and we'll match you with the right artist for the job.</p>
 
-  <!-- STEP 1 — ARTIST -->
-  <div class="bk-panel active" id="sp1">
-    <h3 class="bk-title">Choose Your <em>Artist</em></h3>
-    <p class="bk-hint">Select who you want to work with — or choose any available artist</p>
-    <div class="artist-pick-grid">
-      <div class="ap-card" onclick="pickArtist(this,'Marcus Cole')">
-        <div class="ap-check">✓</div>
-        <img class="ap-img" src="https://images.pexels.com/photos/13345926/pexels-photo-13345926.jpeg?auto=compress&cs=tinysrgb&w=200&h=200&fit=crop" alt="Marcus">
-        <div class="ap-name">Marcus Cole</div>
-        <div class="ap-style">Black & Grey Realism</div>
-      </div>
-      <div class="ap-card" onclick="pickArtist(this,'Elena Vega')">
-        <div class="ap-check">✓</div>
-        <img class="ap-img" src="https://images.pexels.com/photos/4429278/pexels-photo-6024213.jpeg?auto=compress&cs=tinysrgb&w=200&h=200&fit=crop" alt="Elena">
-        <div class="ap-name">Elena Vega</div>
-        <div class="ap-style">Fine Line · Botanical</div>
-      </div>
-      <div class="ap-card" onclick="pickArtist(this,'Diego Santos')">
-        <div class="ap-check">✓</div>
-        <img class="ap-img" src="https://images.pexels.com/photos/4101143/pexels-photo-7878273.jpeg?auto=compress&cs=tinysrgb&w=200&h=200&fit=crop" alt="Diego">
-        <div class="ap-name">Diego Santos</div>
-        <div class="ap-style">Traditional · Chicano</div>
-      </div>
-      <div class="ap-card" onclick="pickArtist(this,'Kai Nakamura')">
-        <div class="ap-check">✓</div>
-        <img class="ap-img" src="https://images.pexels.com/photos/4429279/pexels-photo-1906704.jpeg?auto=compress&cs=tinysrgb&w=200&h=200&fit=crop" alt="Kai">
-        <div class="ap-name">Kai Nakamura</div>
-        <div class="ap-style">Japanese · Color</div>
-      </div>
-      <div class="ap-card" onclick="pickArtist(this,'Sasha Morin')">
-        <div class="ap-check">✓</div>
-        <img class="ap-img" src="https://images.pexels.com/photos/4429277/pexels-photo-4125667.jpeg?auto=compress&cs=tinysrgb&w=200&h=200&fit=crop" alt="Sasha">
-        <div class="ap-name">Sasha Morin</div>
-        <div class="ap-style">Watercolor · Neo-Trad</div>
-      </div>
-      <div class="ap-card" onclick="pickArtist(this,'Any Available Artist')">
-        <div class="ap-check">✓</div>
-        <div style="width:68px;height:68px;border-radius:50%;background:#1A1A1A;display:flex;align-items:center;justify-content:center;font-size:28px;margin:0 auto 12px">✦</div>
-        <div class="ap-name">Any Artist</div>
-        <div class="ap-style">First Available</div>
-      </div>
-    </div>
-    <div class="step-nav">
-      <div></div>
-      <button class="btn-fwd" id="next1" onclick="nextStep(2)" disabled>Continue →</button>
-    </div>
+    <ul class="booking-steps">
+      <li class="booking-step">
+        <span class="step-num">01</span>
+        <div class="step-text">
+          <strong>Submit Your Request</strong>
+          <span>Fill out the form with your idea, placement, and size.</span>
+        </div>
+      </li>
+      <li class="booking-step">
+        <span class="step-num">02</span>
+        <div class="step-text">
+          <strong>Consultation &amp; Quote</strong>
+          <span>We'll reach out within 48hrs to discuss your piece and confirm pricing.</span>
+        </div>
+      </li>
+      <li class="booking-step">
+        <span class="step-num">03</span>
+        <div class="step-text">
+          <strong>Deposit &amp; Date</strong>
+          <span>Lock in your session with a deposit. Non-refundable, transferable once.</span>
+        </div>
+      </li>
+      <li class="booking-step">
+        <span class="step-num">04</span>
+        <div class="step-text">
+          <strong>Get Tattooed</strong>
+          <span>Come in, trust the process, leave with work you'll wear forever.</span>
+        </div>
+      </li>
+    </ul>
   </div>
 
-  <!-- STEP 2 — TATTOO -->
-  <div class="bk-panel" id="sp2">
-    <h3 class="bk-title">Your <em>Tattoo</em></h3>
-    <p class="bk-hint">Tell us about your vision — the AI will use this to recommend the right session length</p>
+  <!-- Right: GHL embed -->
+  <div class="ghl-widget-container reveal">
+    <div class="ghl-placeholder">
+      <div class="ghl-tag">GHL Booking System — Live Widget</div>
 
-    <span class="opt-label">Tattoo Style</span>
-    <div class="opt-grid cols3" id="g-style">
-      <div class="opt" onclick="pickOpt(this,'style')">Black & Grey</div>
-      <div class="opt" onclick="pickOpt(this,'style')">Color Realism</div>
-      <div class="opt" onclick="pickOpt(this,'style')">Fine Line</div>
-      <div class="opt" onclick="pickOpt(this,'style')">Traditional</div>
-      <div class="opt" onclick="pickOpt(this,'style')">Blackwork</div>
-      <div class="opt" onclick="pickOpt(this,'style')">Japanese</div>
-      <div class="opt" onclick="pickOpt(this,'style')">Watercolor</div>
-      <div class="opt" onclick="pickOpt(this,'style')">Chicano</div>
-      <div class="opt" onclick="pickOpt(this,'style')">Not Sure</div>
-    </div>
-
-    <span class="opt-label">Approximate Size</span>
-    <div class="opt-grid cols4" id="g-size">
-      <div class="opt" onclick="pickOpt(this,'size')">
-        <span class="opt-icon">🔵</span>
-        <div class="opt-name">Small</div>
-        <div class="opt-sub">Under 3"</div>
-      </div>
-      <div class="opt" onclick="pickOpt(this,'size')">
-        <span class="opt-icon">🟡</span>
-        <div class="opt-name">Medium</div>
-        <div class="opt-sub">3" – 6"</div>
-      </div>
-      <div class="opt" onclick="pickOpt(this,'size')">
-        <span class="opt-icon">🟠</span>
-        <div class="opt-name">Large</div>
-        <div class="opt-sub">6" – 10"</div>
-      </div>
-      <div class="opt" onclick="pickOpt(this,'size')">
-        <span class="opt-icon">🔴</span>
-        <div class="opt-name">XL / Sleeve</div>
-        <div class="opt-sub">10"+ or full</div>
-      </div>
-    </div>
-
-    <span class="opt-label">Placement on Body</span>
-    <div class="opt-grid cols4" id="g-placement">
-      <div class="opt" onclick="pickOpt(this,'placement')">Forearm</div>
-      <div class="opt" onclick="pickOpt(this,'placement')">Upper Arm</div>
-      <div class="opt" onclick="pickOpt(this,'placement')">Full Sleeve</div>
-      <div class="opt" onclick="pickOpt(this,'placement')">Chest</div>
-      <div class="opt" onclick="pickOpt(this,'placement')">Back</div>
-      <div class="opt" onclick="pickOpt(this,'placement')">Ribs</div>
-      <div class="opt" onclick="pickOpt(this,'placement')">Leg</div>
-      <div class="opt" onclick="pickOpt(this,'placement')">Ankle/Foot</div>
-      <div class="opt" onclick="pickOpt(this,'placement')">Hand/Finger</div>
-      <div class="opt" onclick="pickOpt(this,'placement')">Neck</div>
-      <div class="opt" onclick="pickOpt(this,'placement')">Behind Ear</div>
-      <div class="opt" onclick="pickOpt(this,'placement')">Other</div>
-    </div>
-
-    <span class="opt-label">Color or Black & Grey?</span>
-    <div class="opt-grid cols2" id="g-color" style="margin-bottom:0">
-      <div class="opt" onclick="pickOpt(this,'color')">⬛ Black & Grey Only</div>
-      <div class="opt" onclick="pickOpt(this,'color')">🎨 Color</div>
-    </div>
-
-    <div class="step-nav" style="margin-top:28px">
-      <button class="btn-back" onclick="prevStep(1)">← Back</button>
-      <button class="btn-fwd" onclick="nextStep(3)">Get AI Recommendation →</button>
-    </div>
-  </div>
-
-  <!-- STEP 3 — AI PLANNER -->
-  <div class="bk-panel" id="sp3">
-    <h3 class="bk-title">AI Session <em>Planner</em></h3>
-    <p class="bk-hint">Our AI is analyzing your tattoo details to recommend the perfect session length</p>
-
-    <div class="ai-box">
-      <div class="ai-header">
-        <div class="ai-pulse"></div>
-        <span class="ai-label-text">Trust Tattoo AI · Session Analyzer</span>
-      </div>
-      <div class="ai-thinking" id="aiThinking">
-        <div class="ai-spinner"></div>
-        <div class="ai-thinking-txt">Analyzing your tattoo details...</div>
-      </div>
-      <div class="ai-result" id="aiResult">
-        <div class="ai-headline" id="aiHeadline"></div>
-        <div class="ai-explanation" id="aiExp"></div>
-        <div class="ai-session-box">
-          <div>
-            <div class="ai-sesh-name" id="aiSeshName"></div>
-            <div class="ai-sesh-dur" id="aiSeshDur"></div>
+      <!-- ══ REPLACE THIS ENTIRE .booking-form div WITH YOUR GHL IFRAME ══
+           e.g.: <iframe src="https://app.gohighlevel.com/widget/booking/YOUR_LINK"
+                         style="width:100%;min-height:600px;border:none;"></iframe>
+      ══════════════════════════════════════════════════════════════════ -->
+      <div class="booking-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label>First Name</label>
+            <input type="text" placeholder="e.g. Alex"/>
           </div>
-          <div>
-            <div class="ai-dep-label">Deposit Required</div>
-            <div class="ai-dep-amount" id="aiDep"></div>
-            <div class="ai-dep-note">Goes toward your final price</div>
+          <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" placeholder="e.g. Torres"/>
           </div>
         </div>
-      </div>
-    </div>
-
-    <div class="step-nav">
-      <button class="btn-back" onclick="prevStep(2)">← Back</button>
-      <button class="btn-fwd" id="next3" onclick="nextStep(4)" disabled>Continue →</button>
-    </div>
-  </div>
-
-  <!-- STEP 4 — DETAILS -->
-  <div class="bk-panel" id="sp4">
-    <h3 class="bk-title">Tell Us <em>More</em></h3>
-    <p class="bk-hint">Your contact info, tattoo description, and reference images</p>
-    <div class="form-grid">
-      <div class="fg"><label class="fl">First Name</label><input type="text" placeholder="First name" id="fname"></div>
-      <div class="fg"><label class="fl">Last Name</label><input type="text" placeholder="Last name" id="lname"></div>
-      <div class="fg"><label class="fl">Phone Number</label><input type="tel" placeholder="(555) 000-0000" id="phone"></div>
-      <div class="fg"><label class="fl">Email Address</label><input type="email" placeholder="your@email.com" id="email"></div>
-      <div class="fg full"><label class="fl">Describe Your Tattoo Idea</label><textarea placeholder="Tell us your idea in detail — subject matter, mood, specific elements, inspiration, anything that helps your artist understand your vision..." id="desc"></textarea></div>
-      <div class="fg full">
-        <label class="fl">Reference Images (Highly Recommended)</label>
-        <div class="upload-zone" id="uploadZone">
-          <input type="file" accept="image/*" multiple onchange="handleUpload(this)">
-          <span class="upload-icon">📎</span>
-          <div class="upload-title">Drop images here or tap to upload</div>
-          <div class="upload-hint">JPG, PNG, HEIC up to 10 images · Tattoo references, inspiration photos, placement ideas</div>
-          <div class="preview-wrap" id="prevWrap"></div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" placeholder="you@email.com"/>
+          </div>
+          <div class="form-group">
+            <label>Phone</label>
+            <input type="tel" placeholder="(831) 000-0000"/>
+          </div>
         </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Artist Preference</label>
+            <select>
+              <option value="">No Preference</option>
+              <option>Marcus Reyes — Black &amp; Grey</option>
+              <option>Sable Cruz — Neo-Traditional</option>
+              <option>Dante Orr — Japanese</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Style</label>
+            <select>
+              <option value="">Select Style</option>
+              <option>Black &amp; Grey</option>
+              <option>Neo-Traditional</option>
+              <option>Japanese</option>
+              <option>Fine Line</option>
+              <option>Blackwork</option>
+              <option>Script</option>
+              <option>Cover-Up</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Placement</label>
+            <input type="text" placeholder="e.g. Left forearm"/>
+          </div>
+          <div class="form-group">
+            <label>Approx. Size</label>
+            <select>
+              <option>Small (2–4 in)</option>
+              <option>Medium (4–7 in)</option>
+              <option>Large (7–12 in)</option>
+              <option>XL / Sleeve</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Describe Your Idea</label>
+          <textarea placeholder="Tell us what you're envisioning — reference images, symbols, mood, anything helps..."></textarea>
+        </div>
+        <button class="form-submit" type="button" onclick="this.textContent='Request Sent ✓'; this.style.background='#27ae60'; setTimeout(()=>{this.textContent='Request a Consultation'; this.style.background='';},3000)">Request a Consultation</button>
+        <p class="form-note">* A $100 deposit is required to confirm all appointments.</p>
       </div>
-      <div class="fg"><label class="fl">Skin Tone</label>
-        <select id="skintone">
-          <option value="">Select</option>
-          <option>Very Light</option><option>Light</option><option>Medium</option>
-          <option>Olive / Tan</option><option>Dark Brown</option><option>Deep / Ebony</option>
-        </select>
-      </div>
-      <div class="fg"><label class="fl">First Tattoo?</label>
-        <select id="firsttatt">
-          <option value="">Select</option>
-          <option>Yes — first time!</option>
-          <option>No — I have some</option>
-          <option>No — heavily tattooed</option>
-        </select>
-      </div>
-      <div class="fg"><label class="fl">Is This a Cover-Up?</label>
-        <select id="coverup">
-          <option value="">Select</option>
-          <option>No — fresh skin</option>
-          <option>Yes — covering existing tattoo</option>
-          <option>Yes — covering scar/birthmark</option>
-        </select>
-      </div>
-      <div class="fg"><label class="fl">Allergies / Medical Notes</label><input type="text" placeholder="e.g. latex allergy, keloid scarring — or None" id="medical"></div>
-    </div>
-    <div class="step-nav" style="margin-top:24px">
-      <button class="btn-back" onclick="prevStep(3)">← Back</button>
-      <button class="btn-fwd" onclick="nextStep(5)">Continue →</button>
+
     </div>
   </div>
-
-  <!-- STEP 5 — BOOK & PAY -->
-  <div class="bk-panel" id="sp5">
-    <h3 class="bk-title">Secure Your <em>Spot</em></h3>
-    <p class="bk-hint">Pick your appointment time and pay your deposit to lock it in</p>
-
-    <div class="dep-card">
-      <div class="dep-title">BOOKING DEPOSIT</div>
-      <div class="dep-amount"><em>$</em>100</div>
-      <p class="dep-note">Your <strong>$100 deposit</strong> secures your appointment and goes directly toward the cost of your tattoo. Deposits are non-refundable but transferable with 48+ hours notice. Your artist will provide a full quote before any ink touches skin.</p>
-    </div>
-
-    <div class="cal-wrap">
-      <span class="cal-label">Select Your Appointment Date & Time</span>
-      <iframe src="https://api.leadconnectorhq.com/widget/booking/gbJXvbCSdQPzD7UrinDu" style="width:100%;border:none;overflow:hidden;min-height:650px;display:block" scrolling="no" id="tattoo_booking_cal"></iframe>
-    </div>
-
-    <div class="form-grid">
-      <div class="fg full"><label class="fl">Additional Notes for Your Artist</label><textarea placeholder="Anything else your artist should know before your session..." id="notes" style="min-height:80px"></textarea></div>
-    </div>
-
-    <div class="step-nav" style="margin-top:24px">
-      <button class="btn-back" onclick="prevStep(4)">← Back</button>
-      <button class="btn-fwd" onclick="submitBooking()" style="font-size:12px;padding:16px 48px">Confirm & Pay Deposit →</button>
-    </div>
-  </div>
-
-  <!-- STEP 6 — CONFIRMED -->
-  <div class="bk-panel" id="sp6">
-    <div class="confirm-center">
-      <span class="confirm-icon">🎨</span>
-      <h3 class="confirm-title">You're <em>Booked.</em></h3>
-      <p class="confirm-sub">Your deposit has been received and your session request is on its way to your artist. Expect a confirmation text and email within the hour — your artist will follow up within 24 hours.</p>
-      <div class="confirm-summary" id="confirmSummary"></div>
-      <p style="font-size:13px;color:#555;margin-bottom:28px;max-width:440px;margin-left:auto;margin-right:auto;line-height:1.8">Come with your references ready, wear loose clothing over the area being tattooed, and make sure you eat before your session. We'll take care of everything else.</p>
-      <a href="#top" class="btn-primary" style="display:inline-flex;margin:0 auto">Back to Top →</a>
-    </div>
-  </div>
-
-</div><!-- /bk-card -->
+</div>
 ```
 
-  </div><!-- /booking-outer -->
-</section>
-
-<!-- REVIEWS -->
-
-<section class="sec" id="reviews">
-  <div style="text-align:center">
-    <div class="eyebrow" style="justify-content:center"><div class="ey-l"></div><span class="ey-t">Client Love</span><div class="ey-l"></div></div>
-    <h2 class="sec-h">What They <em>Say</em></h2>
-  </div>
-  <div class="rev-grid">
-    <div class="rev">
-      <div class="stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-      <p class="rev-text">"Marcus did a full sleeve for me over 6 sessions and every single one was a masterpiece. The level of detail in his realism work is genuinely unbelievable. I get stopped on the street constantly. Trust Tattoo is the real deal."</p>
-      <div class="rev-auth"><div class="av">M</div><div><div class="auth-name">Marcus V.</div><div class="auth-meta">Full Sleeve · Google Review</div></div></div>
-    </div>
-    <div class="rev">
-      <div class="stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-      <p class="rev-text">"Elena did a botanical fine line piece on my ribs and I cannot stop looking at it. The detail is so delicate it barely looks real. The AI booking system recommended the perfect session length — I would have booked half the time I actually needed."</p>
-      <div class="rev-auth"><div class="av">S</div><div><div class="auth-name">Sofia K.</div><div class="auth-meta">Fine Line · Google Review</div></div></div>
-    </div>
-    <div class="rev">
-      <div class="stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-      <p class="rev-text">"Diego did a traditional piece on my chest and I've never felt more seen as a client. He understood the culture, the history, the meaning. The whole booking process was smoother than anything I've used before. Deposit was easy, confirmation was instant."</p>
-      <div class="rev-auth"><div class="av">D</div><div><div class="auth-name">Diego R.</div><div class="auth-meta">Chest Piece · Google Review</div></div></div>
-    </div>
   </div>
 </section>
 
-<!-- ABOUT -->
+<!-- PRICING / FAQ -->
 
-<section class="sec sec-dark" id="about">
-  <div class="about-grid">
-    <div class="about-img-wrap">
-      <img class="about-img" src="https://images.pexels.com/photos/4429278/pexels-photo-6024213.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Trust Tattoo Studio">
-      <div class="about-badge"><div class="ab-num">15K+</div><div class="ab-txt">Pieces Completed</div></div>
-    </div>
-    <div>
-      <div class="eyebrow"><div class="ey-l"></div><span class="ey-t">Our Story</span></div>
-      <h2 class="sec-h">Built on <em>Trust.</em></h2>
-      <p class="about-body">Trust Tattoo was founded in 2017 on one belief — that <strong>the relationship between artist and client is sacred.</strong> When someone sits in our chair they're trusting us with something permanent. We take that seriously every single day.</p>
-      <p class="about-body">We hand-picked five of the most respected tattoo artists on the Central Coast and built a studio in Santa Cruz where world-class work happens every single day. No flash mill. No rushing. <strong>Just permanent art created with intention and absolute trust in the craft.</strong></p>
-      <div class="about-feats">
-        <div class="af">5 Master Artists</div>
-        <div class="af">Custom Design Only</div>
-        <div class="af">$100 Deposit to Book</div>
-        <div class="af">Walk-Ins Welcome</div>
-        <div class="af">Free Consultation</div>
-        <div class="af">Touch-Ups Included</div>
+<section id="pricing">
+  <div class="section-inner">
+    <div class="section-label reveal">What to Expect</div>
+    <h2 class="section-title reveal">Pricing &amp; <em style="font-style:italic;color:var(--red)">FAQ</em></h2>
+
+```
+<div class="pricing-layout">
+  <!-- Pricing table -->
+  <div class="reveal">
+    <div class="pricing-table">
+      <div class="pricing-header">Rates</div>
+      <div class="pricing-row">
+        <div class="pricing-label">Shop Minimum<small>Any tattoo, regardless of size</small></div>
+        <div class="pricing-price">$150</div>
       </div>
-      <a href="#booking" class="btn-primary">Book Your Session →</a>
+      <div class="pricing-row">
+        <div class="pricing-label">Hourly Rate<small>Standard sessions</small></div>
+        <div class="pricing-price">$200 / hr</div>
+      </div>
+      <div class="pricing-row">
+        <div class="pricing-label">Half Day Session<small>Approx. 3–4 hrs</small></div>
+        <div class="pricing-price">$550</div>
+      </div>
+      <div class="pricing-row">
+        <div class="pricing-label">Full Day Session<small>6–8 hrs · large/sleeve work</small></div>
+        <div class="pricing-price">$950</div>
+      </div>
+      <div class="pricing-row">
+        <div class="pricing-label">Touch-Up<small>Within 3 months of original</small></div>
+        <div class="pricing-price">Free</div>
+      </div>
+      <div class="pricing-row">
+        <div class="pricing-label">Consultation<small>In-shop design review</small></div>
+        <div class="pricing-price">Free</div>
+      </div>
     </div>
+    <p style="font-size:0.85rem;font-style:italic;color:var(--muted);margin-top:1rem;">Final pricing determined at consultation. Complex designs, cover-ups, and large-scale work may be quoted as a flat project rate.</p>
+  </div>
+
+  <!-- FAQ -->
+  <div class="faq-list reveal">
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        <span>Do I need a deposit to book?</span>
+        <span class="faq-arrow">+</span>
+      </button>
+      <div class="faq-answer"><p>Yes — all appointments require a $100 non-refundable deposit, applied toward your final total. Deposits can be transferred once if you reschedule with 48 hours notice.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        <span>How do I prepare for my appointment?</span>
+        <span class="faq-arrow">+</span>
+      </button>
+      <div class="faq-answer"><p>Eat a full meal before you come in, stay hydrated, and wear or bring clothing that gives easy access to your tattoo placement. Avoid alcohol for 24 hours prior.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        <span>Can I bring reference images?</span>
+        <span class="faq-arrow">+</span>
+      </button>
+      <div class="faq-answer"><p>Absolutely. Send them with your booking request — the more reference the better. Screenshots, Pinterest boards, drawings on napkins, all of it helps.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        <span>Do you do walk-ins?</span>
+        <span class="faq-arrow">+</span>
+      </button>
+      <div class="faq-answer"><p>We accommodate walk-ins when artists have open slots, typically Tue–Thu. Call ahead to check availability. Custom work always requires booking.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        <span>What's your age policy?</span>
+        <span class="faq-arrow">+</span>
+      </button>
+      <div class="faq-answer"><p>You must be 18+ with valid government-issued photo ID. No exceptions, no parental consent forms. California law.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        <span>Do you do cover-ups?</span>
+        <span class="faq-arrow">+</span>
+      </button>
+      <div class="faq-answer"><p>Yes. Cover-ups are assessed case-by-case during consultation. Photos of existing work help us evaluate feasibility and quote accurately.</p></div>
+    </div>
+  </div>
+</div>
+```
+
   </div>
 </section>
 
-<!-- CTA -->
+<!-- CONTACT -->
 
-<section class="cta">
-  <div class="eyebrow" style="justify-content:center"><div class="ey-l"></div><span class="ey-t">Ready?</span><div class="ey-l"></div></div>
-  <h2 class="cta-h">Your Next<em>Chapter Starts Here.</em></h2>
-  <p class="cta-p">Book your session today. Tell us your vision — we'll handle the rest. $100 deposit secures your spot with your artist.</p>
-  <a href="#booking" class="btn-primary" style="display:inline-flex">Book Your Session →</a>
+<section id="contact">
+  <div class="section-inner">
+    <div class="section-label reveal">Find Us</div>
+    <h2 class="section-title reveal">Contact &amp; <em style="font-style:italic;color:var(--red)">Location</em></h2>
+
+```
+<div class="contact-layout">
+  <div class="contact-details reveal">
+    <div class="contact-block">
+      <div class="contact-block-label">Address</div>
+      <a href="https://maps.google.com/?q=Trust+Tattoo+Santa+Cruz" target="_blank">
+        123 Pacific Ave<br>Santa Cruz, CA 95060
+      </a>
+    </div>
+    <div class="contact-block">
+      <div class="contact-block-label">Hours</div>
+      <div class="hours-grid">
+        <span class="hours-day">Mon</span><span class="hours-time">Closed</span>
+        <span class="hours-day">Tue – Fri</span><span class="hours-time">12pm – 8pm</span>
+        <span class="hours-day">Sat</span><span class="hours-time">11am – 7pm</span>
+        <span class="hours-day">Sun</span><span class="hours-time">12pm – 5pm</span>
+      </div>
+    </div>
+    <div class="contact-block">
+      <div class="contact-block-label">Phone &amp; Email</div>
+      <a href="tel:+18315550000">(831) 555-0000</a>
+      <a href="mailto:ink@trusttattooscruz.com">ink@trusttattooscruz.com</a>
+    </div>
+    <div class="contact-block">
+      <div class="contact-block-label">Follow the Work</div>
+      <div class="social-links">
+        <a href="#" class="social-link">Instagram</a>
+        <a href="#" class="social-link">TikTok</a>
+        <a href="#" class="social-link">Yelp</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="map-placeholder reveal">
+    <div class="map-pin">📍</div>
+    <div class="map-label">Trust Tattoo</div>
+    <div class="map-address">123 Pacific Ave · Santa Cruz, CA</div>
+    <a href="https://maps.google.com/?q=Santa+Cruz+CA" target="_blank" style="margin-top:1.2rem;" class="btn-secondary">Open in Maps</a>
+  </div>
+</div>
+```
+
+  </div>
 </section>
 
 <!-- FOOTER -->
 
 <footer>
-  <div class="foot-grid">
-    <div>
-      <span class="f-logo"><em>Trust</em> Tattoo</span>
-      <span class="f-sub">Custom Tattoo Studio · Santa Cruz, CA · Est. 2017</span>
-      <p class="f-desc">World-class tattoo artists. Every style. Permanent art created with precision, passion, and absolute trust in the craft.</p>
-      <div class="f-soc">
-        <a href="#" class="soc">IG</a>
-        <a href="#" class="soc">FB</a>
-        <a href="#" class="soc">G</a>
-      </div>
-    </div>
-    <div>
-      <div class="f-col-h">Navigate</div>
-      <ul class="f-links">
-        <li><a href="#artists">Artists</a></li>
-        <li><a href="#styles">Styles</a></li>
-        <li><a href="#gallery">Gallery</a></li>
-        <li><a href="#booking">Book Now</a></li>
-        <li><a href="#about">About</a></li>
-      </ul>
-    </div>
-    <div>
-      <div class="f-col-h">Hours</div>
-      <ul class="f-links">
-        <li><a href="#">Mon: Closed</a></li>
-        <li><a href="#">Tue – Sat: 11am – 7pm</a></li>
-        <li><a href="#">Sunday: 12pm – 5pm</a></li>
-        <li><a href="#booking">Walk-Ins Welcome</a></li>
-      </ul>
-    </div>
-    <div>
-      <div class="f-col-h">Contact</div>
-      <div class="f-contact"><a href="tel:8315664767">(831) 566-4767</a></div>
-      <div class="f-contact"><a href="mailto:hello@trusttattoo.com">hello@trusttattoo.com</a></div>
-      <div class="f-contact">Santa Cruz, CA 95060</div>
-      <div style="margin-top:18px"><a href="#booking" class="nav-cta" style="display:inline-block;font-size:10px;padding:10px 18px">Book Now →</a></div>
-    </div>
-  </div>
-  <div class="foot-bottom">
-    <div class="f-copy">© 2026 Trust Tattoo · Santa Cruz, CA · All rights reserved.</div>
-    <div class="f-pow"><a href="https://mojodigitalagency.com">Powered by Mojo Digital Agency</a></div>
+  <div class="footer-logo">TRUST<span>.</span></div>
+  <div class="footer-copy">© 2025 Trust Tattoo · Santa Cruz, CA · All Rights Reserved</div>
+  <div class="footer-links">
+    <a href="#booking">Book</a>
+    <a href="#artists">Artists</a>
+    <a href="#contact">Contact</a>
   </div>
 </footer>
 
-<script src="https://link.msgsndr.com/js/form_embed.js"></script>
-
 <script>
-// STATE
-const bk = {artist:'', style:'', size:'', placement:'', color:'', session:'', deposit:'$100'};
-let step = 1;
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting) { e.target.classList.add('visible'); }});
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(r => observer.observe(r));
 
-// NAV
-const ham=document.getElementById('ham'), mob=document.getElementById('mob');
-ham.addEventListener('click',()=>{
-  mob.classList.toggle('open');
-  const s=ham.querySelectorAll('span');
-  if(mob.classList.contains('open')){s[0].style.transform='rotate(45deg) translate(5px,5px)';s[1].style.opacity='0';s[2].style.transform='rotate(-45deg) translate(5px,-5px)';}
-  else{s.forEach(x=>{x.style.transform='';x.style.opacity='';})}
-});
-function closeMob(){mob.classList.remove('open');ham.querySelectorAll('span').forEach(s=>{s.style.transform='';s.style.opacity='';})}
-document.querySelectorAll('a[href^="#"]').forEach(a=>{
-  a.addEventListener('click',e=>{
-    const t=document.querySelector(a.getAttribute('href'));
-    if(t){e.preventDefault();closeMob();window.scrollTo({top:t.offsetTop-76,behavior:'smooth'});}
-  });
-});
-
-// STEP NAVIGATION
-function nextStep(n){
-  document.getElementById('sp'+step).classList.remove('active');
-  document.getElementById('bs'+step).classList.remove('active');
-  document.getElementById('bs'+step).classList.add('done');
-  step=n;
-  document.getElementById('sp'+n).classList.add('active');
-  document.getElementById('bs'+n).classList.remove('done');
-  document.getElementById('bs'+n).classList.add('active');
-  document.querySelector('#booking .booking-outer').scrollIntoView({behavior:'smooth',block:'start'});
-  if(n===3) runAI();
-}
-function prevStep(n){
-  document.getElementById('sp'+step).classList.remove('active');
-  document.getElementById('bs'+step).classList.remove('active');
-  step=n;
-  document.getElementById('sp'+n).classList.add('active');
-  document.getElementById('bs'+n).classList.remove('done');
-  document.getElementById('bs'+n).classList.add('active');
-  document.querySelector('#booking .booking-outer').scrollIntoView({behavior:'smooth',block:'start'});
-}
-
-// ARTIST PICK
-function pickArtist(el, name){
-  document.querySelectorAll('.ap-card').forEach(c=>c.classList.remove('on'));
-  el.classList.add('on');
-  bk.artist=name;
-  document.getElementById('next1').disabled=false;
-}
-function bookArtist(name){
-  window.scrollTo({top:document.getElementById('booking').offsetTop-76,behavior:'smooth'});
-  setTimeout(()=>{
-    document.querySelectorAll('.ap-card').forEach(c=>{
-      if(c.querySelector('.ap-name')&&c.querySelector('.ap-name').textContent===name) pickArtist(c,name);
-    });
-  },700);
-}
-
-// OPTION PICK
-function pickOpt(el, group){
-  const cls = el.className.split(' ')[0];
-  el.closest('.opt-grid').querySelectorAll('.'+cls).forEach(o=>o.classList.remove('on'));
-  el.classList.add('on');
-  bk[group]=el.querySelector('.opt-name')?el.querySelector('.opt-name').textContent:el.textContent.replace(/[⬛🎨]/g,'').trim();
-}
-
-// FILE UPLOAD
-function handleUpload(input){
-  const wrap=document.getElementById('prevWrap');
-  wrap.innerHTML='';
-  Array.from(input.files).slice(0,10).forEach(file=>{
-    const reader=new FileReader();
-    reader.onload=e=>{
-      const img=document.createElement('img');
-      img.src=e.target.result;
-      img.className='prev-img';
-      wrap.appendChild(img);
-    };
-    reader.readAsDataURL(file);
-  });
-}
-
-// AI SESSION PLANNER
-async function runAI(){
-  const thinking=document.getElementById('aiThinking');
-  const result=document.getElementById('aiResult');
-  const next3=document.getElementById('next3');
-  thinking.style.display='flex';
-  result.classList.remove('show');
-  next3.disabled=true;
-
-  const prompt=`You are a booking assistant for Trust Tattoo, a premium custom tattoo studio in Santa Cruz, CA.
-
-A client wants to book a tattoo. Here are their details:
-- Artist: ${bk.artist||'Any artist'}
-- Style: ${bk.style||'Not specified'}
-- Size: ${bk.size||'Not specified'}
-- Placement: ${bk.placement||'Not specified'}
-- Color preference: ${bk.color||'Not specified'}
-
-Recommend ONE of these sessions:
-1. Touch-Up Session — 1 hour — $50 deposit (existing tattoos only)
-2. Small Piece Session — 1-2 hours — $100 deposit (simple, small under 3 inches)
-3. Half Day Session — 4 hours — $100 deposit (medium complexity pieces)
-4. Full Day Session — 8 hours — $100 deposit (large, detailed, or complex work)
-
-Respond ONLY in this exact JSON format, no extra text:
-{"session":"Half Day Session","duration":"4 hours","deposit":"$100","headline":"We recommend a Half Day Session for your [brief tattoo description]","explanation":"2-3 sentences explaining specifically why this session length is right for their tattoo based on the style, size, and placement they chose. Sound like an experienced tattoo artist who genuinely cares about getting it right."}`;
-
-  try {
-    const res=await fetch('https://api.anthropic.com/v1/messages',{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,messages:[{role:'user',content:prompt}]})
-    });
-    const data=await res.json();
-    const raw=data.content[0].text.replace(/```json|```/g,'').trim();
-    const parsed=JSON.parse(raw);
-    bk.session=parsed.session;
-    bk.deposit=parsed.deposit;
-    showAIResult(parsed.headline,parsed.explanation,parsed.session,parsed.duration,parsed.deposit);
-  } catch(e) {
-    // Fallback
-    const sizeMap={'Small':'Small Piece Session|1-2 hours|$100','Medium':'Half Day Session|4 hours|$100','Large':'Full Day Session|8 hours|$100','XL':'Full Day Session|8 hours|$100'};
-    const key=Object.keys(sizeMap).find(k=>bk.size&&bk.size.includes(k))||'Medium';
-    const [sn,dur,dep]=sizeMap[key].split('|');
-    bk.session=sn; bk.deposit=dep;
-    showAIResult(
-      `We recommend a ${sn} for your piece.`,
-      `Based on the size and style you selected, this session gives your artist enough time to complete your tattoo with the detail and care it deserves — including design review, setup, and wrap time.`,
-      sn, dur, dep
-    );
+  // FAQ toggle
+  function toggleFaq(btn) {
+    const item = btn.parentElement;
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
   }
-}
 
-function showAIResult(headline, explanation, session, duration, deposit){
-  const thinking=document.getElementById('aiThinking');
-  const result=document.getElementById('aiResult');
-  const next3=document.getElementById('next3');
+  // Filter tabs (UI only — swap real logic when portfolio images are added)
+  document.querySelectorAll('.filter-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+    });
+  });
 
-  document.getElementById('aiSeshName').textContent=session;
-  document.getElementById('aiSeshDur').textContent=duration;
-  document.getElementById('aiDep').textContent=deposit;
+  // Navbar compact on scroll
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').style.padding =
+      window.scrollY > 80 ? '0.8rem 3rem' : '1.2rem 3rem';
+  });
 
-  thinking.style.display='none';
-  result.classList.add('show');
-
-  // Typewriter headline
-  const hEl=document.getElementById('aiHeadline');
-  hEl.innerHTML='';
-  const cur=document.createElement('span');
-  cur.className='tcursor';
-  hEl.appendChild(cur);
-  let i=0;
-  const t1=setInterval(()=>{
-    if(i<headline.length){hEl.insertBefore(document.createTextNode(headline[i]),cur);i++;}
-    else{
-      clearInterval(t1);cur.remove();
-      // Highlight session name
-      hEl.innerHTML=hEl.textContent.replace(session,'<em>'+session+'</em>');
-      // Typewriter explanation
-      const eEl=document.getElementById('aiExp');
-      eEl.textContent='';
-      let j=0;
-      const t2=setInterval(()=>{
-        if(j<explanation.length){eEl.textContent+=explanation[j];j++;}
-        else{clearInterval(t2);next3.disabled=false;}
-      },12);
+  // Hamburger (mobile)
+  document.getElementById('hamburger').addEventListener('click', () => {
+    const links = document.querySelector('.nav-links');
+    if (links.style.display === 'flex') {
+      links.style.display = '';
+    } else {
+      links.style.cssText = 'display:flex;flex-direction:column;position:absolute;top:60px;left:0;right:0;background:#111;padding:1.5rem 2rem;gap:1.5rem;border-bottom:1px solid #2a2a2a;';
     }
-  },20);
-}
-
-// SUBMIT
-function submitBooking(){
-  const fname=document.getElementById('fname').value||'Client';
-  const lname=document.getElementById('lname').value||'';
-  const summary=document.getElementById('confirmSummary');
-  summary.innerHTML=`
-    <div class="cs-row"><span class="cs-label">Artist</span><span class="cs-val">${bk.artist||'Any Available'}</span></div>
-    <div class="cs-row"><span class="cs-label">Session</span><span class="cs-val red">${bk.session||'TBD'}</span></div>
-    <div class="cs-row"><span class="cs-label">Style</span><span class="cs-val">${bk.style||'TBD in consultation'}</span></div>
-    <div class="cs-row"><span class="cs-label">Size</span><span class="cs-val">${bk.size||'TBD'}</span></div>
-    <div class="cs-row"><span class="cs-label">Placement</span><span class="cs-val">${bk.placement||'TBD'}</span></div>
-    <div class="cs-row"><span class="cs-label">Client</span><span class="cs-val">${fname} ${lname}</span></div>
-    <div class="cs-row"><span class="cs-label">Deposit</span><span class="cs-val red">${bk.deposit} Paid ✓</span></div>
-  `;
-  nextStep(6);
-}
+  });
 </script>
 
 </body>
